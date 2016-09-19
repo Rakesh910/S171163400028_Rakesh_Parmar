@@ -1,0 +1,16 @@
+package com.niit.sunglasses.dao;
+
+import java.util.List;
+
+import com.niit.sunglasses.model.FrameColor;
+
+public interface FrameColorDao {
+
+	public List<FrameColor> getAllFrameColors();
+	
+	public boolean frameColorSaveOrUpdate(FrameColor frameColor);
+	
+	public FrameColor getById(int id);
+	
+	public boolean removeFrameColor(int id);
+}

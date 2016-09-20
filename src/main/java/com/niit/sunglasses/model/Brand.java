@@ -3,6 +3,7 @@ package com.niit.sunglasses.model;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,7 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table
-public class Brand {
+public class Brand implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int brand_id;

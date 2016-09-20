@@ -3,6 +3,7 @@ package com.niit.sunglasses.model;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -20,7 +21,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
-public class Product {
+public class Product implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int product_id;

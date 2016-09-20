@@ -1,0 +1,15 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+                          
+<!-- Executed when webFlow is triggered -->
+	<on-start>
+		<evaluate expression="checkOutHandler.initFlow()" result="flowScope.orderDetailAttribute" />
+	</on-start>
+
+	<view-state id="start" view="checkOutDetail" model="flowScope.orderDetailAttribute">
+		<transition on="submit" to="validate" />
+	</view-state>
+
+</flow>	

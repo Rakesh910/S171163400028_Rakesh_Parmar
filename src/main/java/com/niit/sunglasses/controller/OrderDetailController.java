@@ -139,7 +139,7 @@ public class OrderDetailController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/checkOut")
+	/*@RequestMapping(value="/checkOut")
 	public ModelAndView checkOut(){
 		
 		try {
@@ -159,5 +159,5 @@ public class OrderDetailController {
 		
 		return null;
 		
-	}
+	}*/
 }

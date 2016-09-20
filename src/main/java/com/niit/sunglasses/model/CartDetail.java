@@ -1,5 +1,7 @@
 package com.niit.sunglasses.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
-public class CartDetail {
+public class CartDetail implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cart_id;

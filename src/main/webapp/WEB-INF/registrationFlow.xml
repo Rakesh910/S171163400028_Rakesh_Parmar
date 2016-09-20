@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
@@ -9,7 +8,7 @@
 		<evaluate expression="registrationHandler.initFlow()" result="flowScope.userDetailAttribute" />
 	</on-start>
 
-		<view-state id="start" view="userRegistration" model="flowScope.userDetailAttribute">
+	<view-state id="start" view="userRegistration" model="flowScope.userDetailAttribute">
 		<transition on="submit" to="validate" />
 	</view-state>
 

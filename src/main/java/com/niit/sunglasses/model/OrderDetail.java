@@ -53,7 +53,9 @@ public class OrderDetail implements Serializable {
 	public void setBilling_address(String billing_address) {
 		this.billing_address = billing_address;
 	}
-
+	
+	
+	
 	@ManyToOne(fetch=FetchType.EAGER) 
 	@JoinColumn(name="user_id",unique = false, nullable = false)
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.

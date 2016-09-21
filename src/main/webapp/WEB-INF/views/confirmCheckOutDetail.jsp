@@ -1,0 +1,207 @@
+<%@page import="com.niit.sunglasses.model.OrderDetail"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sunglass Only</title>
+<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="resources/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="resources/css/animate.css" />
+<script src="resources/js/jquery.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50"  id="myPage">
+<div class="container-fluid">
+		<div class="row">
+			<div class="pull-left col-sm-5">
+				<img alt="LOGO" src="resources/images/logo.png" width="70%" height="10%">
+			</div>
+			<div class="col-sm-4">
+				<h3>Welcome to Sunglasses </h3>
+				<div class="alert-danger animated">${message }</div>
+			</div>
+			<c:choose>
+				<c:when test="${userId == null }">
+					<div class="pull-right col-sm-3 text-center">
+			
+				<a href="#" role="button" class="btn btn-info" data-toggle="modal" data-target="#login-modal">Existing User?? Sign In</a>
+				<a href="registration" class="btn btn-info"> New User?? Sign Up</a>
+			</div>
+				</c:when>
+				<c:otherwise>
+					<div class="pull-right col-sm-3 text-center">
+				<h4>Welcome ${username }</h4>
+				<a href="logout" class="btn btn-info btn-block">Logout</a>
+			</div>
+				</c:otherwise>
+			</c:choose>
+			
+			 
+		</div>
+</div>
+<hr>
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+			</div>
+			<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="home">Home</a></li>
+				<c:if test="${isUserClickRegister != true }">
+				<li><a href="#brands">Brands</a></li>
+				<li><a href="#Arrivals">New Arrivals</a></li>
+				</c:if>
+				
+				<li><a href="">Contact Us</a></li>
+				<li><a href="">About Us</a></li>
+			</ul>
+			<c:choose>
+				<c:when test="${userId != null }">
+						<ul class="nav navbar-nav navbar-right">
+							<li ><a href="viewMyCart"  role="button" >My
+									Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
+									(${cartSize}) - Items
+							</a></li>
+						</ul>
+					</c:when>
+				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right">
+							<li ><a href="#"  role="button" >My
+									Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
+									(0) - Items
+							</a></li>
+						</ul>
+				</c:otherwise>
+			</c:choose>
+			
+			</div>
+		</div>
+	</nav>
+	<hr>
+	<div class="container-fluid">
+	<form:form commandName="orderDetailAttribute">
+		
+		 <section class="container">
+		 <div class="container-page">
+		 <h3>Confirm Your Order Detail</h3>
+		 <hr>
+		 	<div class="col-md-6">
+		 		
+			<div class="form-group col-lg-12">
+				<label>User Name</label>
+				<input class="form-control" readonly="readonly" value="<%=session.getAttribute("username") %> "/>
+			</div>
+				<div class="form-group col-lg-6">
+					<label>Email Address</label>
+					<form:input readonly="true" path="user_detail.user_email" class="form-control" value="${orderDetailAttribute.user_detail.user_email }" />
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Contact Number</label>
+					<form:input readonly="true" path="user_detail.user_contact" class="form-control" value="${orderDetailAttribute.user_detail.user_contact }" />
+				</div>
+				<div class="form-group col-lg-12">
+		 	<label>Permanent Address</label>
+		 	<form:textarea  readonly="true" path="user_detail.user_address" class="form-control"/>
+		 	</div>
+			
+		 	</div>
+		 	<div class="col-md-6">
+		 	<div class="form-group col-lg-12">
+		 	<label>Shipping Address</label>
+		 	<form:textarea path="shipping_address" class="form-control" readonly="true"/>
+		 	</div>
+		 	
+		 	<div class="form-group col-lg-12">
+		 	<label>Billing Address</label>
+		 	<form:textarea path="billing_address" class="form-control" readonly="true"/>
+		 	</div>
+
+		 	</div>
+		 	
+		 </div>
+		</section>
+		
+		 <section class="container">
+		 <div class="container-page">
+		 	<div class="col-xs-12">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-8">
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span>Check Your Product List</h5>
+							</div>
+							<div class="col-xs-2">
+							<input name="_eventId_edit" type="submit" class="btn btn-info btn-block " value="Change Details">
+						</div>
+						<div class="col-xs-2">
+							<a href="checkOut" role="button" class="btn btn-danger btn-block">Confirm Order</a>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<tr>
+							<th>#Id</th>
+							<th>PRODUCT NAME</th>
+							<th>DESCRIPTION</th>
+							<th>QUANTITY</th>
+							<th>PRICE</th>
+							<th>DISCOUNT</th>
+							<th>TOTAL</th>
+						</tr>
+						<c:forEach items="${orderDetailAttribute.cartDetail}" var="order" >
+						<tr>
+							<td></td>
+							<td>${order.product.product_name}</td>
+							<td></td>
+							<td>${order.quantity }</td>
+							<td>${order.product.product_price }</td>
+							<td>${order.product.product_discount}</td>
+							<td><i class="fa fa-inr"></i>${order.total}</td>
+						</tr>
+					
+					</c:forEach>
+					<tr>
+						<td colspan="6" align="right">Grandtotal</td>
+						<td><strong>${order.grandTotal}</strong></td>
+					</tr>
+						
+					
+					</table>
+					
+					
+				
+				</div>
+				
+			</div>
+		</div>
+		 </div>
+		
+		</section>
+	</form:form>
+	</div>
+	<hr>
+	
+	
+<footer class="container-fluid text-center">
+		<p> <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a></p>
+  <p class="col-md-12">
+				<hr class="divider">
+				Copyright &COPY; 2016 <a href="http://www.pingpong-labs.com">Additya</a>
+			</p>
+	</footer>
+	</body>
+</html>

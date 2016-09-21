@@ -11,5 +11,21 @@
 	<view-state id="start" view="checkOutDetail" model="flowScope.orderDetailAttribute">
 		<transition on="submit" to="validate" />
 	</view-state>
-
+	
+	<action-state id="validate">
+		<evaluate expression="checkOutHandler.validateDetails(orderDetailAttribute,messageContext)"></evaluate>
+		<transition on="success" to="confirmCheckOutDetail" />
+		<transition on="failure" to="start" />
+	</action-state>
+	
+	<view-state id="confirmCheckOutDetail" view="confirmCheckOutDetail" model="flowScope.orderDetailAttribute">
+		<transition on="edit" to="start" />
+		<transition on="submit" to="saveOrder" />
+	</view-state>
+	
+	<action-state id="saveOrder">
+		<evaluate expression="checkOutHandler.saveOrderDetails(orderDetailAttribute,messageContext)"></evaluate>
+		<transition on="success" to="registrationDone" />
+		<transition on="failure" to="start" />
+	</action-state>
 </flow>	

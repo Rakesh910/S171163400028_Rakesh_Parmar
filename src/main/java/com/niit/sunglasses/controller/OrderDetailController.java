@@ -19,8 +19,6 @@ import com.niit.sunglasses.model.CartDetail;
 import com.niit.sunglasses.model.OrderDetail;
 import com.niit.sunglasses.model.Product;
 import com.niit.sunglasses.model.UserDetail;
-import com.niit.sunglasses.services.CartDetailSrv;
-import com.niit.sunglasses.services.OrderDetailSrv;
 import com.niit.sunglasses.services.ProductSrv;
 import com.niit.sunglasses.services.UserDetailSrv;
 
@@ -40,12 +38,6 @@ public class OrderDetailController {
 	@Autowired
 	private UserDetailSrv userDetailSrv;
 	
-	@Autowired
-	private OrderDetailSrv orderDetailSrv;
-	
-	@Autowired
-	private CartDetailSrv cartDetailSrv;
-	
 	@RequestMapping(value="/addToCart")
 	public ModelAndView addCart(@RequestParam(value="id") int id,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("index");
@@ -59,7 +51,6 @@ public class OrderDetailController {
 		cartDetail.add(cart);
 		order.setCartDetail(cartDetail);
 		order.setGrandTotal(grandTotal);
-		System.out.println("Add PID:-"+cart.getProduct().getProduct_id());
 		session.setAttribute("cartSize", order.getCartDetail().size());
 		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("isUserClickHome","true");
@@ -68,6 +59,7 @@ public class OrderDetailController {
 		order.setPayment_status(true);
 		UserDetail user = userDetailSrv.getById((int) session.getAttribute("userId"));
 		order.setUser_detail(user);
+		session.setAttribute("order", order);
 		return mv;
 	}
 	
@@ -108,6 +100,7 @@ public class OrderDetailController {
 		mv.addObject("order",order);
 		order.setGrandTotal(updateGrandTotal);
 		session.setAttribute("cartSize", order.getCartDetail().size());
+		session.setAttribute("order", order);
 		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("isUserClickViewCart","true");
 		return mv;
@@ -134,6 +127,7 @@ public class OrderDetailController {
 		mv.addObject("order",order);
 		order.setGrandTotal(updateGrandTotal);
 		session.setAttribute("cartSize", order.getCartDetail().size());
+		session.setAttribute("order", order);
 		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("isUserClickViewCart","true");
 		return mv;

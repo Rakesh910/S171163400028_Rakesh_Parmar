@@ -34,6 +34,26 @@ public class OrderDetail implements Serializable {
 	
 	private boolean payment_status;
 	
+	private String shipping_address;
+	
+	private String billing_address;
+	
+	public String getShipping_address() {
+		return shipping_address;
+	}
+
+	public void setShipping_address(String shipping_address) {
+		this.shipping_address = shipping_address;
+	}
+
+	public String getBilling_address() {
+		return billing_address;
+	}
+
+	public void setBilling_address(String billing_address) {
+		this.billing_address = billing_address;
+	}
+
 	@ManyToOne(fetch=FetchType.EAGER) 
 	@JoinColumn(name="user_id",unique = false, nullable = false)
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.

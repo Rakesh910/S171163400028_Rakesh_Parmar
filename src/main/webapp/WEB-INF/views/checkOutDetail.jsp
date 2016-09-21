@@ -86,11 +86,61 @@
 		</div>
 	</nav>
 	<hr>
-		<form:form commandName="orderDetailAttribute">
-			<form:label path="user_detail.user_id"></form:label>${orderDetailAttribute.user_detail.user_id }
-			<form:label path="user_detail.user_fname"></form:label>${orderDetailAttribute.user_detail.user_fname}
-		</form:form>	
-		  
+	<div class="container-fluid">
+	<form:form commandName="orderDetailAttribute">
+		
+		 <section class="container">
+		 <div class="container-page">
+		 <h3>Confirm Your Detail</h3>
+		 <hr>
+		 	<div class="col-md-6">
+		 		
+			<div class="form-group col-lg-12">
+				<label>User Name</label>
+				<input class="form-control" readonly="readonly" value="<%=session.getAttribute("username") %> "/>
+			</div>
+				<div class="form-group col-lg-6">
+					<label>Email Address</label>
+					<form:input readonly="true" path="user_detail.user_email" class="form-control" value="${orderDetailAttribute.user_detail.user_email }" />
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Contact Number</label>
+					<form:input readonly="true" path="user_detail.user_contact" class="form-control" value="${orderDetailAttribute.user_detail.user_contact }" />
+				</div>
+				<div class="form-group col-lg-12">
+		 	<label>Permanent Address</label>
+		 	<form:textarea  readonly="true" path="user_detail.user_address" class="form-control"/>
+		 	</div>
+			
+		 	</div>
+		 	<div class="col-md-6">
+		 	<div class="form-group col-lg-12">
+		 	<label>Shipping Address</label>
+		 	<form:textarea path="shipping_address" class="form-control" required="true" autofocus="true"/>
+		 	</div>
+		 	
+		 	<div class="form-group col-lg-12">
+		 	<label>Billing Address</label>
+		 	<form:textarea path="billing_address" class="form-control" required="true"/>
+		 	</div>
+		 	
+		 	<div class="col-lg-6">
+		 		<a href="viewMyCart" role="button" class="btn btn-block btn-info">View Cart</a>
+		 	</div>
+		 	<div class="col-lg-6">
+		 		<input name="_eventId_submit" type="submit" value="Next" class="btn btn-primary btn-block" />
+		 	</div>
+		 	</div>
+		 	
+		 </div>
+		
+		</section>
+			
+		
+		
+		<div class="col-md-6"></div>
+	</form:form>
+	</div>
 	<hr>
 	
 	

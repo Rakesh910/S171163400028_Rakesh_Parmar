@@ -41,7 +41,6 @@ public class OrderDetailController {
 	@RequestMapping(value="/addToCart")
 	public ModelAndView addCart(@RequestParam(value="id") int id,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView("index");
-		
 		Product product = productSrv.getById(id);
 		CartDetail cart = new CartDetail();
 		cart.setProduct(product);
@@ -54,7 +53,6 @@ public class OrderDetailController {
 		session.setAttribute("cartSize", order.getCartDetail().size());
 		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("isUserClickHome","true");
-		
 		order.setOrderDate(new Date());
 		order.setPayment_status(true);
 		UserDetail user = userDetailSrv.getById((int) session.getAttribute("userId"));
@@ -132,26 +130,4 @@ public class OrderDetailController {
 		mv.addObject("isUserClickViewCart","true");
 		return mv;
 	}
-	
-	/*@RequestMapping(value="/checkOut")
-	public ModelAndView checkOut(){
-		
-		try {
-			System.out.println("Start");
-			orderDetailSrv.orderDetailSave(order);
-			Set<CartDetail> cartDetail = order.getCartDetail();
-			Iterator<CartDetail> itr  = cartDetail.iterator();
-			while(itr.hasNext()){
-				CartDetail cart = itr.next();
-				cart.setOrderDetail(order);
-				cartDetailSrv.cartDetailSave(cart);
-			}	
-		} catch (Exception e) {
-			System.out.println("Error");
-			e.printStackTrace();
-		}
-		
-		return null;
-		
-	}*/
 }

@@ -1,4 +1,3 @@
-<%@page import="com.niit.sunglasses.model.OrderDetail"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -87,113 +86,37 @@
 		</div>
 	</nav>
 	<hr>
-	<div class="container-fluid">
-	<form:form commandName="orderDetailAttribute">
-		
-		 <section class="container">
-		 <div class="container-page">
-		 <h3>Confirm Your Order Detail</h3>
-		 <hr>
-		 	<div class="col-md-6">
-		 		
-			<div class="form-group col-lg-12">
-				<label>User Name</label>
-				<input class="form-control" readonly="readonly" value="<%=session.getAttribute("username") %> "/>
-			</div>
-				<div class="form-group col-lg-6">
-					<label>Email Address</label>
-					<form:input readonly="true" path="user_detail.user_email" class="form-control" value="${orderDetailAttribute.user_detail.user_email }" />
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Contact Number</label>
-					<form:input readonly="true" path="user_detail.user_contact" class="form-control" value="${orderDetailAttribute.user_detail.user_contact }" />
-				</div>
-				<div class="form-group col-lg-12">
-		 	<label>Permanent Address</label>
-		 	<form:textarea  readonly="true" path="user_detail.user_address" class="form-control"/>
-		 	</div>
-			
-		 	</div>
-		 	<div class="col-md-6">
-		 	<div class="form-group col-lg-12">
-		 	<label>Shipping Address</label>
-		 	<form:textarea path="shipping_address" class="form-control" readonly="true"/>
-		 	</div>
-		 	
-		 	<div class="form-group col-lg-12">
-		 	<label>Billing Address</label>
-		 	<form:textarea path="billing_address" class="form-control" readonly="true"/>
-		 	</div>
-
-		 	</div>
-		 	
-		 </div>
-		</section>
-		
-		 <section class="container">
-		 <div class="container-page">
-		 	<div class="col-xs-12">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<div class="panel-title">
-						<div class="row">
-							<div class="col-xs-8">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span>Check Your Product List</h5>
-							</div>
-							<div class="col-xs-2">
-							<input name="_eventId_edit" type="submit" class="btn btn-info btn-block " value="Change Details">
-						</div>
-						<div class="col-xs-2">
-						<input name="_eventId_submit" type="submit" class="btn btn-danger btn-block" value="Payment">
-						</div>
-						</div>
-					</div>
-				</div>
-				<div class="table-responsive">
-					<table class="table table-hover">
-						<tr>
-							<th>#Id</th>
-							<th>PRODUCT NAME</th>
-							<th>DESCRIPTION</th>
-							<th>QUANTITY</th>
-							<th>PRICE</th>
-							<th>DISCOUNT</th>
-							<th>TOTAL</th>
-						</tr>
-						<c:forEach items="${orderDetailAttribute.cartDetail}" var="order" >
-						<tr>
-							<td></td>
-							<td>${order.product.product_name}</td>
-							<td></td>
-							<td>${order.quantity }</td>
-							<td>${order.product.product_price }</td>
-							<td>${order.product.product_discount}</td>
-							<td><i class="fa fa-inr"></i>${order.total}</td>
-						</tr>
-					
-					</c:forEach>
-					<tr>
-						<td colspan="6" align="right">Grandtotal</td>
-						<td><strong>${order.grandTotal}</strong></td>
-					</tr>
-						
-					
-					</table>
-					
-					
-				
-				</div>
-				
-			</div>
-		</div>
-		 </div>
-		
-		</section>
-	</form:form>
-	</div>
+			<h1>Thank you...!!!</h1>
+			  
 	<hr>
-	
-	
+
+	 <script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+  // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 400, function(){
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
 <footer class="container-fluid text-center">
 		<p> <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -54,8 +55,19 @@ public class OrderDetail implements Serializable {
 		this.billing_address = billing_address;
 	}
 	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="card_id",unique = false, nullable = false)
+	private CardDetail cardDetail;
 	
 	
+	public CardDetail getCardDetail() {
+		return cardDetail;
+	}
+
+	public void setCardDetail(CardDetail cardDetail) {
+		this.cardDetail = cardDetail;
+	}
+
 	@ManyToOne(fetch=FetchType.EAGER) 
 	@JoinColumn(name="user_id",unique = false, nullable = false)
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.

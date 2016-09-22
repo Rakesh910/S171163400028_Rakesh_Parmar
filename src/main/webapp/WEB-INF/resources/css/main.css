@@ -3,6 +3,7 @@
 body {
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /* font-family: Museo,Helvetica,arial,san-serif */
+    /* background-image: url('../images/BGIMAGE.jpg'); */
 }
 
 .panel-info > .panel-heading{
@@ -169,9 +170,6 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 }
 
-
-
-
 @media (min-width:768px) {
 	#home{
 		margin-top:50px;
@@ -181,4 +179,68 @@ background-attachment: fixed;
 		line-height: 29px;
 		font-weight:bold;
 	}
+}
+
+/*Card Images CSS*/
+
+ol, ul {
+  list-style: none;
+}
+.hand {
+  cursor: pointer;
+  cursor: pointer;
+}
+.cards{
+    padding-left:0;
+}
+.cards li {
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+  background-image: url('../images/CardImages.jpg');
+  background-position: 0 0;
+  float: left;
+  height: 32px;
+  margin-right: 8px;
+  text-indent: -9999px;
+  width: 51px;
+}
+.cards .mastercard {
+  background-position: -51px 0;
+}
+.cards li {
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+  background-image: url('../images/CardImages.jpg');
+  background-position: 0 0;
+  float: left;
+  height: 32px;
+  margin-right: 8px;
+  text-indent: -9999px;
+  width: 51px;
+}
+.cards .amex {
+  background-position: -102px 0;
+}
+.cards li {
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+  background-image: url('../images/CardImages.jpg');
+  background-position: 0 0;
+  float: left;
+  height: 32px;
+  margin-right: 8px;
+  text-indent: -9999px;
+  width: 51px;
+}
+.cards li:last-child {
+  margin-right: 0;
 }

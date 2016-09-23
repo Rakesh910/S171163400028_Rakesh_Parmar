@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,7 +26,7 @@ public class Product implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int product_id;
@@ -43,22 +43,8 @@ public class Product implements Serializable{
 	
 	private int stock;
 	
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
+	private boolean newArrival;
+	
 	private String product_image;
 	
 	@Transient
@@ -109,22 +95,6 @@ public class Product implements Serializable{
 	@JoinColumn(name="supplier_id",unique = false, nullable = false)
 	@JsonIgnore 
 	private Supplier supplier;
-	
-	@ManyToOne(fetch=FetchType.EAGER) 
-	@JoinColumn(name="cart_id",insertable = false)
-	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.
-	private CartDetail cart;
-	
-	@OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
-	private Set<CartDetail> cartDetail;
-
-	public Set<CartDetail> getCartDetail() {
-		return cartDetail;
-	}
-
-	public void setCartDetail(Set<CartDetail> cartDetail) {
-		this.cartDetail = cartDetail;
-	}
 
 	public int getProduct_id() {
 		return product_id;
@@ -164,6 +134,30 @@ public class Product implements Serializable{
 
 	public void setProduct_UV(int product_UV) {
 		this.product_UV = product_UV;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public boolean isNewArrival() {
+		return newArrival;
+	}
+
+	public void setNewArrival(boolean newArrival) {
+		this.newArrival = newArrival;
 	}
 
 	public String getProduct_image() {
@@ -252,8 +246,12 @@ public class Product implements Serializable{
 
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
-	}	
+	}
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getFilePath(String path1,String contextPath)
 	{
 	String fileName=null;
@@ -283,4 +281,5 @@ public class Product implements Serializable{
 		return "fail";
 	}
 }
+
 }

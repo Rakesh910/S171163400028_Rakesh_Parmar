@@ -15,23 +15,23 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="50"  id="myPage">
 <div class="container-fluid">
 		<div class="row">
-			<div class="pull-left col-sm-5">
-				<img alt="LOGO" src="resources/images/logo.png" width="70%" height="10%">
+			<div class="pull-left col-sm-4">
+				<img alt="LOGO" src="resources/images/logo.png" width="100%" height="10%">
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 text-center">
 				<h3>Welcome to Sunglasses </h3>
 				<div class="alert-danger animated">${message }</div>
 			</div>
 			<c:choose>
 				<c:when test="${userId == null }">
-					<div class="pull-right col-sm-3 text-center">
-			
-				<a href="#" role="button" class="btn btn-info" data-toggle="modal" data-target="#login-modal">Existing User?? Sign In</a>
-				<a href="registration" class="btn btn-info"> New User?? Sign Up</a>
+					<div class="pull-right col-sm-4 text-center">
+			<br>
+				<a href="#"  role="button" class="btn btn-success " data-toggle="modal" data-target="#login-modal">Existing User?? Sign In</a>
+				<a href="registration" class="btn btn-info "> New User?? Sign Up</a>
 			</div>
 				</c:when>
 				<c:otherwise>
-					<div class="pull-right col-sm-3 text-center">
+					<div class="pull-right col-sm-4 text-center">
 				<h4>Welcome ${username }</h4>
 				<a href="logout" class="btn btn-info btn-block">Logout</a>
 			</div>

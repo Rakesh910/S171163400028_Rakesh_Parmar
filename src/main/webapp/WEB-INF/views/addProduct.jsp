@@ -406,6 +406,29 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<c:choose>
+		<c:when test="${productAttribute.product_id != 0 }">
+			<c:choose>
+				<c:when test="${productAttribute.newArrival != true }">
+				<div class="form-label">Product Is New Arrival??</div>
+					<form:radiobutton path="newArrival" value="0" label="No" checked="true"></form:radiobutton>
+					<form:radiobutton path="newArrival" value="1" label="Yes" ></form:radiobutton>
+				</c:when>
+				<c:otherwise>
+				<div class="form-label">Product Is New Arrival??</div>
+					<form:radiobutton path="newArrival" value="0" label="No"></form:radiobutton>
+			<form:radiobutton path="newArrival" value="1" label="Yes" checked="true"></form:radiobutton>
+				</c:otherwise>			
+			</c:choose>
+		
+		</c:when>
+		<c:otherwise>
+			<div class="form-label">Product Is New Arrival??</div>
+			<form:radiobutton path="newArrival" value="0" label="No"></form:radiobutton>
+			<form:radiobutton path="newArrival" value="1" label="Yes" checked="true"></form:radiobutton>
+		</c:otherwise>
+	</c:choose>
+	
 	</div>
 	</form:form>
 </div>

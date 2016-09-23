@@ -165,6 +165,7 @@ public class ProductController {
 				mv.addObject("productAttribute",product);
 				mv.addObject("isAdminClickProduct","true");
 				setLists(mv);
+				mv.addObject("categoryList",categorySrv.getCategoryList());
 				return mv;
 			}
 		}
@@ -174,6 +175,7 @@ public class ProductController {
 			return mv;
 		}
 	}
+	
 	
 	@RequestMapping(value="/editProduct")
 	public ModelAndView editProduct(@RequestParam(value="id") int id){
@@ -243,7 +245,6 @@ public class ProductController {
 	
 	public void setLists(ModelAndView mv){
 		mv.addObject("brandList",brandSrv.getAllBrands());
-		/*mv.addObject("categoryList",categorySrv.getCategoryList());*/
 		mv.addObject("frameColorList",frameColorSrv.getAllFrameColors());
 		mv.addObject("frameMaterialList",frameMaterialSrv.getAllFrameMaterials());
 		mv.addObject("frameTypeList",frameTypeSrv.getAllFrameTypes());

@@ -5,9 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.niit.sunglasses.model.*;
+
+import com.niit.sunglasses.model.Brand;
+import com.niit.sunglasses.model.Category;
+import com.niit.sunglasses.model.FrameColor;
+import com.niit.sunglasses.model.FrameMaterial;
+import com.niit.sunglasses.model.FrameType;
+import com.niit.sunglasses.model.LensColor;
+import com.niit.sunglasses.model.LensMaterial;
+import com.niit.sunglasses.model.Product;
+import com.niit.sunglasses.model.ProductSize;
+import com.niit.sunglasses.model.Supplier;
 import com.niit.sunglasses.services.BrandSrv;
-import com.niit.sunglasses.services.CategorySrv;
 import com.niit.sunglasses.services.FrameColorSrv;
 import com.niit.sunglasses.services.FrameMaterialSrv;
 import com.niit.sunglasses.services.FrameTypeSrv;
@@ -22,9 +31,6 @@ public class AdminIndexController {
 	
 	@Autowired
 	private BrandSrv brandSrv;
-	
-	@Autowired
-	private CategorySrv categorySrv;
 	
 	@Autowired
 	private FrameColorSrv frameColorSrv;
@@ -166,16 +172,9 @@ public class AdminIndexController {
 		return mv;
 	}
 	
-	@RequestMapping("/getString")
-	public ModelAndView pg(){
-		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("msg","Hello");
-		return mv;
-	}
 	
 	public void setLists(ModelAndView mv){
 		mv.addObject("brandList",brandSrv.getAllBrands());
-		mv.addObject("categoryList",categorySrv.getCategoryList());
 		mv.addObject("frameColorList",frameColorSrv.getAllFrameColors());
 		mv.addObject("frameMaterialList",frameMaterialSrv.getAllFrameMaterials());
 		mv.addObject("frameTypeList",frameTypeSrv.getAllFrameTypes());

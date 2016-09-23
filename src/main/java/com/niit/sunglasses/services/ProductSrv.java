@@ -12,4 +12,6 @@ public interface ProductSrv {
 	public Product getById(int id);
 	
 	public boolean removeProduct(int id);
+	
+	public List<Product> getNewArrivals();
 }

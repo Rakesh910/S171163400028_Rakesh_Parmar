@@ -35,4 +35,9 @@ public class ProductSrvImpl implements ProductSrv {
 		return productDao.removeProduct(id);
 	}
 
+	@Override
+	public List<Product> getNewArrivals() {
+		return productDao.getNewArrivals();
+	}
+
 }

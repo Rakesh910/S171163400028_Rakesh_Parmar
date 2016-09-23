@@ -88,7 +88,7 @@ public class ProductController {
 		try
 		{
 			if(result.hasErrors())
-			{
+			{	
 				mv.addObject("message","Error in BindingResult");
 				return mv;
 			}else if(productObj.getFilePath(srv.getRealPath("/"), srv.getContextPath()) == "fail"){
@@ -126,8 +126,8 @@ public class ProductController {
 					product.setFrameType(frameType);
 					
 					mv.addObject("productAttribute",product);
-					mv.addObject("isAdminClickProduct","true");
-					setLists(mv);
+					/*mv.addObject("isAdminClickProduct","true");
+					setLists(mv);*/
 				}else{
 					mv.addObject("message","Image Uploading Fail..!!");
 				}
@@ -163,9 +163,9 @@ public class ProductController {
 				product.setFrameType(frameType);
 				
 				mv.addObject("productAttribute",product);
-				mv.addObject("isAdminClickProduct","true");
-				setLists(mv);
-				mv.addObject("categoryList",categorySrv.getCategoryList());
+				/*mv.addObject("isAdminClickProduct","true");
+				setLists(mv);*/
+				/*mv.addObject("categoryList",categorySrv.getCategoryList());*/
 				return mv;
 			}
 		}

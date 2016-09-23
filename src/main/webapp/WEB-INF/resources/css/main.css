@@ -3,7 +3,7 @@
 body {
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /* font-family: Museo,Helvetica,arial,san-serif */
-    background-image: url('../images/BGIMAGE.jpg');
+    /* background-image: url('../images/BGIMAGE.jpg'); */
 }
 
 .panel-info > .panel-heading{
@@ -244,3 +244,10 @@ ol, ul {
 .cards li:last-child {
   margin-right: 0;
 }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 15px;
+    }

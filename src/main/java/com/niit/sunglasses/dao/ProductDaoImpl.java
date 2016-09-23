@@ -98,6 +98,27 @@ public class ProductDaoImpl implements ProductDao{
 		}
 	}
 
+	@Override
+	public List<Product> getNewArrivals() {
+		try {
+			log.debug("Staring of the method getAllProducts");
+			String hql ="Select product.product_id as product_id,product.product_name as product_name,product.product_price as product_price,product.product_discount as product_discount,product.product_UV as product_UV,product.status as status,product.stock as stock,product.product_image as product_image,brand.brand_id as brand_id,brand.brand_name as brand_name,category.cat_id as cat_id,category.cat_name as cat_name,supplier.supplier_id as supplier_id,supplier.supplier_name as supplier_name,frameColor.frameColor_id as frameColor_id,frameColor.frameColor_name as frameColor_name,frameMaterial.frameMaterial_id as frameMaterial_id,frameMaterial.frameMaterial_name as frameMaterial_name,frameType.frameType_id as frameType_id,frameType.frameType_name as frameType_name,lensMaterial.lensMaterial_id as lensMaterial_id,lensMaterial.lensMaterial_name as lensMaterial_name,lensColor.lensColor_id as lensColor_id,lensColor.lensColor_name as lensColor_name,productSize.size_id as size_id,productSize.size_name as size_name from Product product join product.brand brand join product.category category join product.supplier supplier join product.frameColor frameColor join product.frameMaterial frameMaterial join product.frameType frameType join product.lensMaterial lensMaterial join product.lensColor lensColor join product.productSize productSize where product.status = true AND product.newArrival = true order by(product.product_id) desc";
+			Query query = sessionFactory.getCurrentSession().createQuery(hql).setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+			log.debug("Staring of the method getAllProducts");
+			query.setMaxResults(8);
+			@SuppressWarnings("unchecked")
+			List<Product> list  = query.list();
+			if(list==null || list.isEmpty()){
+				log.info("No Products are Availible");
+			}
+			return list;
+		} catch (HibernateException e) {
+			log.error("Exception occurred in getAllProducts method ");
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 
 }

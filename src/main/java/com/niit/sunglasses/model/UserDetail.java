@@ -1,7 +1,6 @@
 package com.niit.sunglasses.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,9 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -39,7 +39,7 @@ public class UserDetail implements Serializable {
 	
 	private boolean status;
 	
-	@OneToMany(mappedBy = "user_detail",fetch = FetchType.EAGER)
+	/*@OneToMany(mappedBy = "user_detail",fetch = FetchType.EAGER)
 	private Set<OrderDetail> orderDetail;
 	
 	public Set<OrderDetail> getOrderDetail() {
@@ -48,7 +48,7 @@ public class UserDetail implements Serializable {
 
 	public void setOrderDetail(Set<OrderDetail> orderDetail) {
 		this.orderDetail = orderDetail;
-	}
+	}*/
 
 	public boolean isStatus() {
 		return status;
@@ -57,9 +57,10 @@ public class UserDetail implements Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-
-	@OneToOne(fetch=FetchType.EAGER)
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_role_id",unique = false, nullable = false)
+	@JsonIgnore
 	private UserRole userRole;
 
 	public int getUser_id() {

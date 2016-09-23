@@ -83,8 +83,7 @@ public class UserDetailController {
 				mv.addObject("isUserClickHome","true");
 				session.setAttribute("userId", userDetail.getUser_id());
 				session.setAttribute("username", (userDetail.getUser_fname()+" "+userDetail.getUser_lname()));
-				mv.addObject("userLoginAttribute",new UserDetail());
-				mv.addObject("isUserClickHome","true");
+				session.setAttribute("cartSize",0);
 				mv.addObject("brandList",brandSrv.getAllBrands());	
 				return mv;
 			}

@@ -1,4 +1,4 @@
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
+ 	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: -20px;">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -18,10 +18,6 @@
 
 			<div class="item">
 				<img src="resources/images/2.jpg" alt="Sunglasses">
-				<!--       <div class="carousel-caption"> -->
-				<!--         <h3>Chania</h3> -->
-				<!--         <p>The atmosphere in Chania has a touch of Florence and Venice.</p> -->
-				<!--       </div> -->
 			</div>
 
 			<div class="item">
@@ -67,6 +63,4 @@
   </c:forEach>
 	</div>
 	</div>
-
-	<hr>
 	

@@ -8,7 +8,7 @@
 		<evaluate expression="checkOutHandler.initFlow()" result="flowScope.orderDetailAttribute" />
 	</on-start>
 
-	<view-state id="start" view="checkOutDetail" model="flowScope.orderDetailAttribute">
+	<view-state id="start" view="UserPages/checkOutDetail" model="flowScope.orderDetailAttribute">
 		<transition on="submit" to="validate" />
 	</view-state>
 	
@@ -18,12 +18,12 @@
 		<transition on="failure" to="start" />
 	</action-state>
 	
-	<view-state id="confirmCheckOutDetail" view="confirmCheckOutDetail" model="flowScope.orderDetailAttribute">
+	<view-state id="confirmCheckOutDetail" view="UserPages/confirmCheckOutDetail" model="flowScope.orderDetailAttribute">
 		<transition on="edit" to="start" />
 		<transition on="submit" to="payment" />
 	</view-state>
 	
-	<view-state id="payment" view="orderPayment" model="flowScope.orderDetailAttribute">
+	<view-state id="payment" view="UserPages/orderPayment" model="flowScope.orderDetailAttribute">
 		<transition on="edit" to="start"/>
 		<transition on="submit" to="validatePayDetail" />
 	</view-state>
@@ -46,7 +46,7 @@
 		<transition on="failure" to="start" />
 	</action-state>
 	
-	<end-state id="thankyou" view="orderConfirmed" />
+	<end-state id="thankyou" view="UserPages/orderConfirmed" />
 	
 		
 </flow>	

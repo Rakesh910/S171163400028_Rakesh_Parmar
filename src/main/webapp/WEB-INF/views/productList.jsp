@@ -16,36 +16,7 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50"
 	id="myPage">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="pull-left col-sm-4">
-				<img alt="LOGO" src="resources/images/logo.png" width="100%"
-					height="10%">
-			</div>
-			<div class="col-sm-4 text-center">
-				<h3>Welcome to Sunglasses</h3>
-				<div class="alert-danger animated">${message }</div>
-			</div>
-			<c:choose>
-				<c:when test="${userId == null }">
-					<div class="pull-right col-sm-4 text-center">
-						<br> <a href="#" role="button" class="btn btn-success "
-							data-toggle="modal" data-target="#login-modal">Existing
-							User?? Sign In</a> <a href="registration" class="btn btn-info ">
-							New User?? Sign Up</a>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="pull-right col-sm-4 text-center">
-						<h4>Welcome ${username }</h4>
-						<a href="logout" class="btn btn-info btn-block">Logout</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
-
-
-		</div>
-	</div>
+	<%@ include file="header.jsp" %>
 	<hr>
 	<nav class="navbar navbar-inverse" data-spy="affix"
 		data-offset-top="200">
@@ -76,19 +47,12 @@
 				<c:choose>
 					<c:when test="${userId != null }">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="viewMyCart" role="button">My Cart &nbsp;<span
+							<li><a href="UserPages/viewMyCart" role="button">My Cart &nbsp;<span
 									class="glyphicon glyphicon-shopping-cart"></span> (${cartSize})
 									- Items
 							</a></li>
 						</ul>
 					</c:when>
-					<c:otherwise>
-						<!-- <ul class="nav navbar-nav navbar-right">
-							<li><a href="#" role="button">My Cart &nbsp;<span
-									class="glyphicon glyphicon-shopping-cart"></span> (0) - Items
-							</a></li>
-						</ul> -->
-					</c:otherwise>
 				</c:choose>
 
 			</div>
@@ -100,7 +64,19 @@
 		<div class="col-lg-12">
 			<ol class="breadcrumb">
 				<li><a href="home">Home</a></li>
-				<li class="active"><b>${brandList.brand_name }</b></li>
+				<c:if test="${isUserClickBrand == true }">
+					<li class="active"><b>${brandList.brand_name }</b></li>
+				</c:if>
+				<c:if test="${isUserClickByFilterID == true }">
+					<c:if test="${indexNumber == 0 }">
+						<li><a href="showProductList?id=${brandList.brand_id}">${brandList.brand_name }</a></li>
+						<li class="active"><b>${resultList.cat_name }</b></li>
+					</c:if>
+					<c:if test="${indexNumber == 1 }">
+						<label>Product Size:-</label><li class="active">${resultList.size_name }</li>
+					</c:if>
+				</c:if>
+				<li class="pull-right">Total <strong>${foundSize}</strong> Products Are Available</li>
 			</ol>
 		</div>
 	</div>
@@ -118,122 +94,152 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${brandList.category}" var="categoryList">
-									<li><a href="${categoryList.cat_id}">${categoryList.cat_name }</a></li>
+									<li><a href="productListByFilterID?id=${categoryList.cat_id}&bid=${brandList.brand_id}&index=0">${categoryList.cat_name }</a></li>
 								</c:forEach>
 
 							</ul>
 						</div>
 					</div>
 				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseTwo" role="button">Product Size</a>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${productSizeList}" var="productSizeList">
+									<li><a href="productListByFilterID?id=${productSizeList.size_id}&bid=${brandList.brand_id}&index=1">${productSizeList.size_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseThree" role="button">Frame Color</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${frameColorList}" var="frameColorList">
+									<li><a href="${frameColorList.frameColor_id}">${frameColorList.frameColor_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseFour" role="button">Frame Material</a>
+						</h4>
+					</div>
+					<div id="collapseFour" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${frameMaterialList}" var="frameMaterialList">
+									<li><a href="${frameMaterialList.frameMaterial_id}">${frameMaterialList.frameMaterial_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseFive" role="button">Frame Type</a>
+						</h4>
+					</div>
+					<div id="collapseFive" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${frameTypeList}" var="frameTypeList">
+									<li><a href="${frameTypeList.frameType_id}">${frameTypeList.frameType_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseSix" role="button">Lens Color</a>
+						</h4>
+					</div>
+					<div id="collapseSix" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${lensColorList}" var="lensColorList">
+									<li><a href="${lensColorList.lensColor_id}">${lensColorList.lensColor_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapseSeven" role="button">Lens Material</a>
+						</h4>
+					</div>
+					<div id="collapseSeven" class="panel-collapse collapse">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<c:forEach items="${lensMaterialList}" var="lensMaterialList">
+									<li><a href="${lensMaterialList.lensMaterial_id}">${lensMaterialList.lensMaterial_name }</a></li>
+								</c:forEach>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				
 			</div>
 
 		</div>
 		<!-- Content Column -->
 		<div class="col-md-10 ">
-			<!-- <h2 class="page-header">Section Heading</h2> -->
+			<!-- <h2 class="page-header">Section Heading</h2> --></div>
+			<c:choose>
+				<c:when test="${foundSize <= 0}">
+				<h1>Sorry..No Products Are Available Right Now.</h1>
+				
+				</c:when>
+				<c:otherwise>
+				<c:if test="${isUserClickBrand == true }">
+			  	<%@ include file="productListByBrand.jsp" %>
+			  </c:if>
+			  
+			  <c:if test="${isUserClickByFilterID == true }">
+			  	<%@ include file="productListByFilters.jsp" %>
+			  </c:if>
+				
+				</c:otherwise>
+			</c:choose>
 			
-			<c:forEach items="${brandList.category}" var="catList">
-					<c:forEach items="${catList.product}" var="productList">
-						<div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5><i class="fa fa-fw fa-check"></i>${productList.product_name}</h5>
-                    </div>
-                    <div class="panel-body">
-                        <div class="thumbnail">
-								<img src="${productList.product_image}" alt="Image"
-									style="height: 20%;">
-								<%-- <p>
-									<strong>${productList.product_name}</strong>
-								</p> --%>
-								
-							</div>
-							<a href="productDetail?id=${productList.product_id }"
-									role="button" class=" btn btn-success btn-block">View
-									Detail</a>
-                    </div>
-                </div>
-            </div>
-					</c:forEach>
-
-				</c:forEach>
-			
-           
-            
-		</div>
+			  
+			  
 	</div>
 
 </div>
 	
 	<hr>
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none; padding-top: 15%">
-		<div class="modal-dialog">
-			<div class="loginmodal-container">
-				<h1>Login to Your Account</h1>
-				<br>
-				<form:form action="userLogin" commandName="userLoginAttribute"
-					method="POST">
-					<div class="form-group">
-						<form:input path="user_email" class="form-control"
-							placeholder="Example@example.com" type="email" required="true" />
-					</div>
-					<div class="form-group">
-						<form:password path="user_password" class="form-control"
-							placeholder="XXXXXXXX" required="true" />
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<button type="submit" class="btn btn-success btn-block">Sign
-								In</button>
-						</div>
-						<div class="col-md-8 help-block text-right">
-							New User?<a class=" btn btn-info" href="registration">Register
-								Here.</a>
-						</div>
-					</div>
-				</form:form>
-			</div>
-		</div>
-	</div>
-	<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-  // Make sure this.hash has a value before overriding default behavior
-  if (this.hash !== "") {
-
-    // Prevent default anchor click behavior
-    event.preventDefault();
-
-    // Store hash
-    var hash = this.hash;
-
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 400, function(){
-
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-      });
-    } // End if
-  });
-})
-</script>
-	<footer class="container-fluid text-center">
-		<p>
-			<a class="up-arrow" href="#myPage" data-toggle="tooltip"
-				title="TO TOP"> <span class="glyphicon glyphicon-chevron-up"></span>
-			</a>
-		</p>
-		<p class="col-md-12">
-		<hr class="divider">
-		Copyright &COPY; 2016 <a href="http://www.pingpong-labs.com">Additya</a>
-		</p>
-	</footer>
-</body>
+	<%@ include file="footer.jsp" %>
+	</body>
 </html>

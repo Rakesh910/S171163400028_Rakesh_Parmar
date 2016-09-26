@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ADMIN HOME</title>
-<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/admin.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/animate.css" />
-<script src="resources/js/jquery.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script src="resources/js/angular.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../resources/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/animate.css" />
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/angular.min.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -21,7 +20,7 @@
 				<h3>ADMINISTRATOR</h3>
 			</div>
 			<div class="col-sm-6">
-				<img alt="LOGO" src="resources/images/logo.png" width="70%"
+				<img alt="LOGO" src="../resources/images/logo.png" width="70%"
 					height="10%">
 			</div>
 			<div class="pull-right col-sm-3 text-center">
@@ -71,7 +70,7 @@
 			</div>
 			  <div class="col-sm-10 text-left" style="overflow-y: scroll; height:100%;">
 			  <c:if test="${isAdminClickHome == true }">
-			  <img  class="img-thumbnail" src="resources/images/AdminHome.jpg" style="width: 100%;height: 100%" />
+			  <img  class="img-thumbnail" src="../resources/images/AdminHome.jpg" style="width: 100%;height: 100%" />
 			  </c:if>
 			  <c:if test="${isAdminClickBrand == true }">
 			  	<%@ include file="addBrand.jsp" %>
@@ -97,9 +96,7 @@
 			  <c:if test="${isAdminClickFrameMaterial == true }">
 			  	<%@ include file="addFrameMaterial.jsp" %>
 			  </c:if>
-			   <c:if test="${isAdminClickFrameMaterial == true }">
-			  	<%@ include file="addFrameMaterial.jsp" %>
-			  </c:if>
+			  
 			   <c:if test="${isAdminClickLensColor == true }">
 			  	<%@ include file="addLensColor.jsp" %>
 			  </c:if>

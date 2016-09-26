@@ -19,6 +19,7 @@ import com.niit.sunglasses.model.CartDetail;
 import com.niit.sunglasses.model.OrderDetail;
 import com.niit.sunglasses.model.Product;
 import com.niit.sunglasses.model.UserDetail;
+import com.niit.sunglasses.services.BrandSrv;
 import com.niit.sunglasses.services.ProductSrv;
 import com.niit.sunglasses.services.UserDetailSrv;
 
@@ -31,6 +32,8 @@ public class OrderDetailController {
 	
 	private float grandTotal = 0;
 	
+	@Autowired
+	private BrandSrv brandSrv;
 	
 	@Autowired
 	private ProductSrv productSrv;
@@ -38,41 +41,58 @@ public class OrderDetailController {
 	@Autowired
 	private UserDetailSrv userDetailSrv;
 	
-	@RequestMapping(value="/addToCart")
+	@RequestMapping(value="addToCart")
 	public ModelAndView addCart(@RequestParam(value="id") int id,HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("index");
-		Product product = productSrv.getById(id);
-		CartDetail cart = new CartDetail();
-		cart.setProduct(product);
-		cart.setQuantity(1);
-		cart.setTotal((cart.getQuantity()*((product.getProduct_price()-(((product.getProduct_price())*(product.getProduct_discount()))/100)))));
-		grandTotal = (float) (grandTotal + cart.getTotal());
-		cartDetail.add(cart);
-		order.setCartDetail(cartDetail);
-		order.setGrandTotal(grandTotal);
-		session.setAttribute("cartSize", order.getCartDetail().size());
-		mv.addObject("userLoginAttribute",new UserDetail());
-		mv.addObject("isUserClickHome","true");
-		order.setOrderDate(new Date());
-		order.setPayment_status(true);
-		UserDetail user = userDetailSrv.getById((int) session.getAttribute("userId"));
-		order.setUser_detail(user);
-		session.setAttribute("order", order);
+		ModelAndView mv = new ModelAndView("productDetail");
+		mv.addObject("productDetail",productSrv.getById(id));
+		mv.addObject("listOfBrands",brandSrv.getAllBrands());
+		
+		if(session.getAttribute("userId") != null){
+			try {
+				Product product = productSrv.getById(id);
+				CartDetail cart = new CartDetail();
+				cart.setProduct(product);
+				cart.setQuantity(1);
+				cart.setTotal((cart.getQuantity()*((product.getProduct_price()-(((product.getProduct_price())*(product.getProduct_discount()))/100)))));
+				grandTotal = (float) (grandTotal + cart.getTotal());
+				cartDetail.add(cart);
+				order.setCartDetail(cartDetail);
+				order.setGrandTotal(grandTotal);
+				session.setAttribute("cartSize", order.getCartDetail().size());
+				mv.addObject("userLoginAttribute",new UserDetail());
+				mv.addObject("isUserClickHome","true");
+				order.setOrderDate(new Date());
+				order.setPayment_status(true);
+				UserDetail user = userDetailSrv.getById((int) session.getAttribute("userId"));
+				order.setUser_detail(user);
+				session.setAttribute("order", order);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+			mv.addObject("message","Sorry..You Must be Login First..!!");
+		}
+		
+		
 		return mv;
 	}
 	
-	@RequestMapping(value="/viewMyCart")
+	@RequestMapping(value="UserPages/viewMyCart")
 	public ModelAndView viewCartDetail(){
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("UserPages/viewCart");
 		mv.addObject("order",order);
-		mv.addObject("isUserClickViewCart","true");
-		mv.addObject("userLoginAttribute",new UserDetail());
+		try {
+			System.out.println("Size"+order.getCartDetail().size());
+		} catch (Exception e) {
+			System.out.println("Size not Found");
+		}
+		
 		return mv;
 	}
 	
-	@RequestMapping(value="/updateCart",method=RequestMethod.POST)
+	@RequestMapping(value="UserPages/updateCart",method=RequestMethod.POST)
 	public ModelAndView addCart(HttpServletRequest request,HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("UserPages/viewCart");
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
@@ -99,14 +119,12 @@ public class OrderDetailController {
 		order.setGrandTotal(updateGrandTotal);
 		session.setAttribute("cartSize", order.getCartDetail().size());
 		session.setAttribute("order", order);
-		mv.addObject("userLoginAttribute",new UserDetail());
-		mv.addObject("isUserClickViewCart","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/deleteCart")
+	@RequestMapping(value="UserPages/deleteCart")
 	public ModelAndView removeCart(@RequestParam(value="id") int product_id,HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("UserPages/viewCart");
 		float updateGrandTotal = 0;
 		Set<CartDetail> cartDetail = order.getCartDetail();
 		Iterator<CartDetail> itr  = cartDetail.iterator();
@@ -119,7 +137,6 @@ public class OrderDetailController {
 				cart.setTotal((cart.getQuantity()*((cart.getProduct().getProduct_price()-(((cart.getProduct().getProduct_price())*(cart.getProduct().getProduct_discount()))/100)))));
 				updateGrandTotal = (float) (updateGrandTotal + cart.getTotal());
 			}
-			
 		}
 		order.setCartDetail(cartDetail);
 		mv.addObject("order",order);

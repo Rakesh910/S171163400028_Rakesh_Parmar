@@ -3,7 +3,7 @@
 body {
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
     /* font-family: Museo,Helvetica,arial,san-serif */
-    /* background-image: url('../images/BGIMAGE.jpg'); */
+    background-image: url('../images/BGIMAGE.jpg');
 }
 
 .panel-info > .panel-heading{

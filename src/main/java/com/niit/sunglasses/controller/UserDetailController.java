@@ -5,29 +5,28 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.sunglasses.model.UserDetail;
-import com.niit.sunglasses.model.UserRole;
 import com.niit.sunglasses.services.BrandSrv;
-import com.niit.sunglasses.services.UserDetailSrv;
 
 @Controller
 public class UserDetailController {
 	
-	@Autowired
-	private UserDetailSrv userDetailSrv;
 	
-	private UserDetail userDetail;
 	
-	private UserRole userRole;
-		
 	@Autowired
 	private BrandSrv brandSrv;
+	
+	
+	/*@RequestMapping(value="loginPage")
+	public String loginpage(){
+		
+		System.out.println("Return LoginPage");
+		return "loginPage";
+	}*/
 	
 	/*@RequestMapping(value = "/saveUserDetail", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("userLoginAttribute") UserDetail userDetailObj, BindingResult result, Model model)
@@ -60,7 +59,8 @@ public class UserDetailController {
 		}
 	}*/
 	
-	@RequestMapping(value="userLogin",method=RequestMethod.POST)
+	//Comment for implementing Spring Security.(This Method for Normal Login)
+	/*@RequestMapping(value="login",method=RequestMethod.POST)
 	public ModelAndView Login(@ModelAttribute("userLoginAttribute") UserDetail userDetailObj, BindingResult result, Model model,HttpSession session){
 		ModelAndView mv = new ModelAndView("index");
 		userDetail = userDetailSrv.isValidUser(userDetailObj.getUser_email(), userDetailObj.getUser_password());
@@ -72,7 +72,7 @@ public class UserDetailController {
 		}else{
 			userRole = userDetail.getUserRole();
 			if(userRole.getUser_role_id()==1){
-				mv = new ModelAndView("adminIndex");
+				mv = new ModelAndView("AdminPages/adminIndex");
 				mv.addObject("isAdminClickHome","true");
 				session.setAttribute("userId", userDetail.getUser_id());
 				session.setAttribute("username", (userDetail.getUser_fname()+" "+userDetail.getUser_lname()));
@@ -88,18 +88,81 @@ public class UserDetailController {
 				return mv;
 			}
 		}	
+	}*/
+	
+	@RequestMapping(value="/loginPage")
+	public ModelAndView loginMethod(@RequestParam(value = "authfailed", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, Model model){
+		if(error != null) {
+			System.out.println("Error Not Null");
+			ModelAndView mv = new ModelAndView("loginPage");
+			mv.addObject("message", "Invalid username and password");
+			return mv;
+		} else if (logout != null){
+			System.out.println("Logout Not Null");
+			ModelAndView mv = new ModelAndView("index");
+			mv.addObject("brandList",brandSrv.getAllBrands());
+			mv.addObject("message","Logout Successfully");
+			return mv;
+		}else{
+			ModelAndView mv = new ModelAndView("loginPage");
+			mv.addObject("isLoginPage",true);
+			return mv;
+		}
+		
+		/*System.out.println("Start If");
+		if (error != null) {
+			System.out.println("IN If Error not null");
+			model.addAttribute("error", "Invalid username and password");
+		}
+		System.out.println("End IF error");
+		System.out.println("Start Logout if");
+		if (logout != null) {
+			System.out.println("Start Logout if");
+			model.addAttribute("msg", "You have been logged out successfully.");
+			System.out.println("End Logout if");
+		}
+		System.out.println("Return View");
+		ModelAndView mv = new ModelAndView("loginPage");
+		return  mv;*/
 	}
 	
 	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.removeAttribute("userId");
+		session.removeAttribute("username");
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("userLoginAttribute",new UserDetail());
+		mv.addObject("brandList",brandSrv.getAllBrands());
+		return mv;
+	}
+	
+	@RequestMapping(value = "AdminPages/logout")
+	public ModelAndView Adminlogout(HttpSession session) {
+		session.removeAttribute("userId");
+		session.removeAttribute("username");
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("userLoginAttribute",new UserDetail());
+		mv.addObject("brandList",brandSrv.getAllBrands());
+		return mv;
+	}
+	
+	@RequestMapping(value = "UserPages/logout")
 	public ModelAndView removeProduct(HttpSession session) {
 		session.removeAttribute("userId");
 		session.removeAttribute("username");
 		session.invalidate();
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("userLoginAttribute",new UserDetail());
-		mv.addObject("isUserClickHome","true");
 		mv.addObject("brandList",brandSrv.getAllBrands());
 		return mv;
 	}
 
+	@RequestMapping(value = "/exception")
+	public String exceptionPage(){
+		return "exception";
+	}
+	
 }

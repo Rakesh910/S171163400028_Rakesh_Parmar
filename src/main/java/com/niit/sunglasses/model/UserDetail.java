@@ -37,7 +37,7 @@ public class UserDetail implements Serializable {
 	
 	private String user_password;
 	
-	private boolean status;
+	private boolean enabled;
 	
 	/*@OneToMany(mappedBy = "user_detail",fetch = FetchType.EAGER)
 	private Set<OrderDetail> orderDetail;
@@ -51,11 +51,11 @@ public class UserDetail implements Serializable {
 	}*/
 
 	public boolean isStatus() {
-		return status;
+		return enabled;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setStatus(boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 	@ManyToOne(fetch=FetchType.EAGER)

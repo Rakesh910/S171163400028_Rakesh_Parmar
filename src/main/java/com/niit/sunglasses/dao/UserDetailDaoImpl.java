@@ -39,7 +39,7 @@ public class UserDetailDaoImpl implements UserDetailDao{
 	public UserDetail getById(int id) {
 		try {
 			log.debug("Staring of the method getById with id ="+id);
-			Query query = sessionFactory.getCurrentSession().createQuery("from UserDetail WHERE user_id = '"+id+"' AND status = true");
+			Query query = sessionFactory.getCurrentSession().createQuery("from UserDetail WHERE user_id = '"+id+"' AND enabled = true");
 			@SuppressWarnings("unchecked")
 			List<UserDetail> userList = query.list();
 			if(userList != null && !userList.isEmpty()){
@@ -61,7 +61,7 @@ public class UserDetailDaoImpl implements UserDetailDao{
 	public UserDetail getByEmailID(String email) {
 		try {
 			log.debug("Staring of the method getById with id ="+email);
-			Query query = sessionFactory.getCurrentSession().createQuery("from UserDetail WHERE user_email = '"+email+"' AND status = true");
+			Query query = sessionFactory.getCurrentSession().createQuery("from UserDetail WHERE user_email = '"+email+"' AND enabled = true");
 			@SuppressWarnings("unchecked")
 			List<UserDetail> userList = query.list();
 			if(userList != null && !userList.isEmpty()){
@@ -71,6 +71,7 @@ public class UserDetailDaoImpl implements UserDetailDao{
 				log.debug("No Record Found in getById with id ="+email);
 				return null;
 			}
+			/*return (UserDetail) sessionFactory.getCurrentSession().get(UserDetail.class, new String(email));*/
 		} catch (HibernateException e) {
 			log.error("Error Occures in getById Method..!! (id = '"+email+"')");
 			e.printStackTrace();
@@ -86,7 +87,7 @@ public class UserDetailDaoImpl implements UserDetailDao{
 			brand.setBrand_id(id);
 			log.debug("Ready To remove userDetail with Id :- "+id);
 			//sessionFactory.getCurrentSession().delete(brand);
-			sessionFactory.getCurrentSession().createQuery("Update UserDetail Set status = false Where user_id = '"+id+"'").executeUpdate();
+			sessionFactory.getCurrentSession().createQuery("Update UserDetail Set enabled = false Where user_id = '"+id+"'").executeUpdate();
 			log.debug("UserDetail Removed with Id :- "+id);
 			return true;
 		} catch (HibernateException e) {

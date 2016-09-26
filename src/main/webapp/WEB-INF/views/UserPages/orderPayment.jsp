@@ -1,23 +1,23 @@
-<%@page import="com.niit.sunglasses.model.OrderDetail"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sunglass Only</title>
-<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/admin.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/animate.css" />
-<script src="resources/js/jquery.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
+<title>Sunglasses Only</title>
+<link type="text/css" rel="stylesheet" href="../resources/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/animate.css" />
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/angular.min.js"></script>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50"  id="myPage">
+<body data-spy="scroll" data-target=".navbar" data-offset="50" id="myPage">
 <div class="container-fluid">
 		<div class="row">
 			<div class="pull-left col-sm-5">
-				<img alt="LOGO" src="resources/images/logo.png" width="70%" height="10%">
+				<img alt="LOGO" src="../resources/images/logo.png" width="70%" height="10%">
 			</div>
 			<div class="col-sm-4">
 				<h3>Welcome to Sunglasses </h3>

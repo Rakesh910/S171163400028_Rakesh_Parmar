@@ -4,19 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sunglass Only</title>
-<link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/admin.css" />
-<link type="text/css" rel="stylesheet" href="resources/css/animate.css" />
-<script src="resources/js/jquery.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
+<title>Sunglasses Only</title>
+<link type="text/css" rel="stylesheet" href="../resources/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/admin.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/animate.css" />
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+<script src="../resources/js/angular.min.js"></script>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50"  id="myPage">
+<body data-spy="scroll" data-target=".navbar" data-offset="50" id="myPage">
 <div class="container-fluid">
 		<div class="row">
 			<div class="pull-left col-sm-5">
-				<img alt="LOGO" src="resources/images/logo.png" width="70%" height="10%">
+				<img alt="LOGO" src="../resources/images/logo.png" width="70%" height="10%">
 			</div>
 			<div class="col-sm-4">
 				<h3>Welcome to Sunglasses </h3>
@@ -91,7 +92,7 @@
 		
 		 <section class="container">
 		 <div class="container-page">
-		 <h3>Confirm Your Detail</h3>
+		 <h3>Confirm Your Order Detail</h3>
 		 <hr>
 		 	<div class="col-md-6">
 		 		
@@ -116,29 +117,78 @@
 		 	<div class="col-md-6">
 		 	<div class="form-group col-lg-12">
 		 	<label>Shipping Address</label>
-		 	<form:textarea path="shipping_address" class="form-control" required="true" autofocus="true"/>
+		 	<form:textarea path="shipping_address" class="form-control" readonly="true"/>
 		 	</div>
 		 	
 		 	<div class="form-group col-lg-12">
 		 	<label>Billing Address</label>
-		 	<form:textarea path="billing_address" class="form-control" required="true"/>
+		 	<form:textarea path="billing_address" class="form-control" readonly="true"/>
 		 	</div>
-		 	
-		 	<div class="col-lg-6">
-		 		<a href="viewMyCart" role="button" class="btn btn-block btn-info">View Cart</a>
-		 	</div>
-		 	<div class="col-lg-6">
-		 		<input name="_eventId_submit" type="submit" value="Next" class="btn btn-primary btn-block" />
-		 	</div>
+
 		 	</div>
 		 	
 		 </div>
+		</section>
+		
+		 <section class="container">
+		 <div class="container-page">
+		 	<div class="col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-8">
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span>Check Your Product List</h5>
+							</div>
+							<div class="col-xs-2">
+							<input name="_eventId_edit" type="submit" class="btn btn-default btn-block " value="Change Details">
+						</div>
+						<div class="col-xs-2">
+						<input name="_eventId_submit" type="submit" class="btn btn-danger btn-block" value="Payment">
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<tr>
+							<th>#Id</th>
+							<th>PRODUCT NAME</th>
+							<th>DESCRIPTION</th>
+							<th>QUANTITY</th>
+							<th>PRICE</th>
+							<th>DISCOUNT</th>
+							<th>TOTAL</th>
+						</tr>
+						<c:forEach items="${orderDetailAttribute.cartDetail}" var="order" >
+						<tr>
+							<td></td>
+							<td>${order.product.product_name}</td>
+							<td></td>
+							<td>${order.quantity }</td>
+							<td>${order.product.product_price }</td>
+							<td>${order.product.product_discount}</td>
+							<td><i class="fa fa-inr"></i>${order.total}</td>
+						</tr>
+					
+					</c:forEach>
+					<tr>
+						<td colspan="6" align="right">Grandtotal</td>
+						<td><strong>${order.grandTotal}</strong></td>
+					</tr>
+						
+					
+					</table>
+					
+					
+				
+				</div>
+				
+			</div>
+		</div>
+		 </div>
 		
 		</section>
-			
-		
-		
-		<div class="col-md-6"></div>
 	</form:form>
 	</div>
 	<hr>

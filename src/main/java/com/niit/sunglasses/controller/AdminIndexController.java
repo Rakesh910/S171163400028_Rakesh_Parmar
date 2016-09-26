@@ -53,44 +53,42 @@ public class AdminIndexController {
 	@Autowired
 	private SupplierSrv supplierSrv;
 	
-	
-	
-
-	@RequestMapping("/admin")
+	@RequestMapping("/AdminPages/admin")
 	public ModelAndView indexPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
+		System.out.println("Admin Page");
 		mv.addObject("isAdminClickHome","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageBrand",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageBrand",method=RequestMethod.GET)
 	public ModelAndView brandPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("brandAttribute",new Brand());
 		mv.addObject("isAdminClickBrand","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageCategory",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageCategory",method=RequestMethod.GET)
 	public ModelAndView categoryPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("categoryAttribute",new Category());
 		mv.addObject("brandList",brandSrv.getAllBrands());
 		mv.addObject("isAdminClickCategory","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageSupplier",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageSupplier",method=RequestMethod.GET)
 	public ModelAndView supplierPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("supplierAttribute",new Supplier());
 		mv.addObject("isAdminClickSupplier","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageProduct",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageProduct",method=RequestMethod.GET)
 	public ModelAndView productPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		
 		Product product = new Product();
 		
@@ -124,49 +122,49 @@ public class AdminIndexController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageProductSize",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageProductSize",method=RequestMethod.GET)
 	public ModelAndView productSizePage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("productSizeAttribute",new ProductSize());
 		mv.addObject("isAdminClickProductSize","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageFrameType",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageFrameType",method=RequestMethod.GET)
 	public ModelAndView frameTypePage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("frameTypeAttribute",new FrameType());
 		mv.addObject("isAdminClickFrameType","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageFrameColor",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageFrameColor",method=RequestMethod.GET)
 	public ModelAndView frameColorPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("frameColorAttribute",new FrameColor());
 		mv.addObject("isAdminClickFrameColor","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageFrameMaterial",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageFrameMaterial",method=RequestMethod.GET)
 	public ModelAndView frameMaterialPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("frameMaterialAttribute",new FrameMaterial());
 		mv.addObject("isAdminClickFrameMaterial","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageLensColor",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageLensColor",method=RequestMethod.GET)
 	public ModelAndView lensColorPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("lensColorAttribute",new LensColor());
 		mv.addObject("isAdminClickLensColor","true");
 		return mv;
 	}
 	
-	@RequestMapping(value="/manageLensMaterial",method=RequestMethod.GET)
+	@RequestMapping(value="/AdminPages/manageLensMaterial",method=RequestMethod.GET)
 	public ModelAndView lensMaterialPage(){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("lensMaterialAttribute",new LensMaterial());
 		mv.addObject("isAdminClickLensMaterial","true");
 		return mv;

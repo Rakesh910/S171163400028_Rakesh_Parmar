@@ -25,7 +25,7 @@
 			</div>
 			<div class="pull-right col-sm-3 text-center">
 				<h4>Welcome ${username }</h4>
-				<a href="logout" class="btn btn-info btn-block">Logout</a>
+				<a href="../j_spring_security_logout" class="btn btn-info btn-block">Logout</a>
 			</div>
 		</div>
 	</div>

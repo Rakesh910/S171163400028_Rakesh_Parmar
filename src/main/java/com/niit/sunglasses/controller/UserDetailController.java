@@ -1,5 +1,7 @@
 package com.niit.sunglasses.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.sunglasses.model.Product;
 import com.niit.sunglasses.model.UserDetail;
 import com.niit.sunglasses.services.BrandSrv;
+import com.niit.sunglasses.services.ProductSrv;
 
 @Controller
 public class UserDetailController {
@@ -19,6 +23,9 @@ public class UserDetailController {
 	
 	@Autowired
 	private BrandSrv brandSrv;
+	
+	@Autowired
+	private ProductSrv productSrv;
 	
 	
 	/*@RequestMapping(value="loginPage")
@@ -127,29 +134,33 @@ public class UserDetailController {
 		return  mv;*/
 	}
 	
-	@RequestMapping(value = "/logout")
-	public ModelAndView logout(HttpSession session) {
+	/*@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session,Model model) {
 		session.removeAttribute("userId");
 		session.removeAttribute("username");
 		session.invalidate();
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getAllBrands());
+		List<Product> product = productSrv.getNewArrivals();
+		System.out.println("New Arrival List Size :-"+product.size());
+		mv.addObject("newProductsList",product);
+		System.out.println("Simple Logout");
 		return mv;
-	}
+	}*/
 	
-	@RequestMapping(value = "AdminPages/logout")
+	/*@RequestMapping(value = "AdminPages/logout")
 	public ModelAndView Adminlogout(HttpSession session) {
 		session.removeAttribute("userId");
 		session.removeAttribute("username");
 		session.invalidate();
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getAllBrands());
+		mv.addObject("newProductsList",productSrv.getNewArrivals());
+		System.out.println("Admin Logout");
 		return mv;
-	}
+	}*/
 	
-	@RequestMapping(value = "UserPages/logout")
+	/*@RequestMapping(value = "UserPages/logout")
 	public ModelAndView removeProduct(HttpSession session) {
 		session.removeAttribute("userId");
 		session.removeAttribute("username");
@@ -157,8 +168,10 @@ public class UserDetailController {
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getAllBrands());
+		mv.addObject("newProductsList",productSrv.getNewArrivals());
+		System.out.println("User Logout");
 		return mv;
-	}
+	}*/
 
 	@RequestMapping(value = "/exception")
 	public String exceptionPage(){

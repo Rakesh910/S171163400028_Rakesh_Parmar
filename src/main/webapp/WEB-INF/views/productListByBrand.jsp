@@ -13,11 +13,11 @@
 										
 
 									</div>
-									<p>
+									<p class="text-center">
 									<strong>Rs.<del>${productList.product_price}</del> <mark>Rs.${(productList.product_price) - (productList.product_price * productList.product_discount / 100)}</mark></strong>
 								</p>
-									<a href="productDetail?id=${productList.product_id }" role="button" class=" btn btn-success">View Detail</a>
-									<a href="addToCart?id=${productList.product_id}" class="btn btn-success">ADD TO CART</a>
+									<a href="productDetail?id=${productList.product_id }" role="button" class=" btn btn-success btn-block">View Detail</a>
+									
 								</div>
 							</div>
 						</div>

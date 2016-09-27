@@ -15,6 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.sunglasses.model.Brand;
 import com.niit.sunglasses.model.Category;
+import com.niit.sunglasses.model.FrameColor;
+import com.niit.sunglasses.model.FrameMaterial;
+import com.niit.sunglasses.model.FrameType;
+import com.niit.sunglasses.model.LensColor;
+import com.niit.sunglasses.model.LensMaterial;
 import com.niit.sunglasses.model.Product;
 import com.niit.sunglasses.model.ProductSize;
 import com.niit.sunglasses.model.UserDetail;
@@ -71,7 +76,6 @@ public class IndexController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public ModelAndView indexPage(HttpSession session,HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getAllBrands());
 		mv.addObject("newProductsList",productSrv.getNewArrivals());
 		if(session.getAttribute("cartSize") == null){
@@ -108,7 +112,6 @@ public class IndexController {
 	@RequestMapping("home")
 	public ModelAndView homePage(HttpSession session){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getAllBrands());
 		mv.addObject("newProductsList",productSrv.getNewArrivals());
 		if(session.getAttribute("cartSize") == null){
@@ -120,9 +123,8 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/showProductList")
-	public ModelAndView productlist(@RequestParam(value="id") int id){
+	public ModelAndView productlist(@RequestParam(value="id") int id,HttpSession session){
 		ModelAndView mv = new ModelAndView("productList");
-		mv.addObject("userLoginAttribute",new UserDetail());
 		mv.addObject("brandList",brandSrv.getById(id));
 		Brand brand = brandSrv.getById(id);
 		int foundProducts = 0;
@@ -137,14 +139,24 @@ public class IndexController {
 		mv.addObject("isUserClickBrand","true");
 		mv.addObject("listOfBrands",brandSrv.getAllBrands());
 		setLists(mv);
+		if(session.getAttribute("cartSize") == null){
+			mv.addObject("cartSize",0);
+		}else{
+			mv.addObject("cartSize",session.getAttribute("cartSize"));
+		}
 		return mv;
 	}
 	
 	@RequestMapping(value="/productListByFilterID")
-	public ModelAndView productListByCatId(@RequestParam(value="id") int id,@RequestParam(value="bid") int bid,@RequestParam(value="index") int index){
+	public ModelAndView productListByCatId(@RequestParam(value="id") int id,@RequestParam(value="bid") int bid,@RequestParam(value="index") int index,HttpSession session){
 		ModelAndView mv = new ModelAndView("productList");
 		mv.addObject("isUserClickByFilterID","true");
 		mv.addObject("listOfBrands",brandSrv.getAllBrands());
+		if(session.getAttribute("cartSize") == null){
+			mv.addObject("cartSize",0);
+		}else{
+			mv.addObject("cartSize",session.getAttribute("cartSize"));
+		}
 		
 		int foundProducts = 0;
 		if(index == 0){
@@ -167,6 +179,59 @@ public class IndexController {
 				Product prd = itr.next();
 				foundProducts ++;
 			}
+		}else if(index == 2){
+			mv.addObject("indexNumber",index);
+			mv.addObject("resultList",frameColorSrv.getById(id));
+			FrameColor category = frameColorSrv.getById(id);
+			Set<Product> product = category.getProduct();
+			Iterator<Product> itr = product.iterator();
+			while(itr.hasNext()){
+				Product prd = itr.next();
+				foundProducts ++;
+			}
+		}else if(index == 3){
+			mv.addObject("indexNumber",index);
+			mv.addObject("resultList",frameMaterialSrv.getById(id));
+			FrameMaterial category = frameMaterialSrv.getById(id);
+			Set<Product> product = category.getProduct();
+			Iterator<Product> itr = product.iterator();
+			while(itr.hasNext()){
+				Product prd = itr.next();
+				foundProducts ++;
+			}
+			
+		}else if(index == 4){
+			mv.addObject("indexNumber",index);
+			mv.addObject("resultList",frameTypeSrv.getById(id));
+			FrameType category = frameTypeSrv.getById(id);
+			Set<Product> product = category.getProduct();
+			Iterator<Product> itr = product.iterator();
+			while(itr.hasNext()){
+				Product prd = itr.next();
+				foundProducts ++;
+			}
+			
+		}else if(index == 5){
+			mv.addObject("indexNumber",index);
+			mv.addObject("resultList",lensColorSrv.getById(id));
+			LensColor category = lensColorSrv.getById(id);
+			Set<Product> product = category.getProduct();
+			Iterator<Product> itr = product.iterator();
+			while(itr.hasNext()){
+				Product prd = itr.next();
+				foundProducts ++;
+			}
+			
+		}else if(index == 6){
+			mv.addObject("indexNumber",index);
+			mv.addObject("resultList",lensMaterialSrv.getById(id));
+			LensMaterial category = lensMaterialSrv.getById(id);
+			Set<Product> product = category.getProduct();
+			Iterator<Product> itr = product.iterator();
+			while(itr.hasNext()){
+				Product prd = itr.next();
+				foundProducts ++;
+			}
 		}
 
 		mv.addObject("brandList",brandSrv.getById(bid));
@@ -176,10 +241,15 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/productDetail")
-	public ModelAndView productDetail(@RequestParam(value="id") int id){
+	public ModelAndView productDetail(@RequestParam(value="id") int id,HttpSession session){
 		ModelAndView mv = new ModelAndView("productDetail");
 		mv.addObject("productDetail",productSrv.getById(id));
 		mv.addObject("listOfBrands",brandSrv.getAllBrands());
+		if(session.getAttribute("cartSize") == null){
+			mv.addObject("cartSize",0);
+		}else{
+			mv.addObject("cartSize",session.getAttribute("cartSize"));
+		}
 		return mv;
 	}
 	
@@ -192,5 +262,17 @@ public class IndexController {
 		mv.addObject("productSizeList",productSizeSrv.getAllProductSizes());
 		mv.addObject("supplierList",supplierSrv.getAllSuppliers());		
 	}
+	
+	@RequestMapping(value="/contactUs")
+	public ModelAndView contactUsPage(){
+		ModelAndView mv = new ModelAndView("contactUs");
+		return mv;
+	}
+	
+	@RequestMapping(value="/aboutUs")
+	public ModelAndView aboutUsPage(){
+		ModelAndView mv = new ModelAndView("aboutUs");
+		return mv;
+	}	
 	
 }

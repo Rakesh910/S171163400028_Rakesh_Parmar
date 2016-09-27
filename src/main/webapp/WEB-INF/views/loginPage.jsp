@@ -30,9 +30,9 @@
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="home">Home</a></li>
-					<li><a href="">Contact Us</a></li>
-					<li><a href="">About Us</a></li>
+					<li><a href="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+					<li><a href="contactUs"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
+					<li><a href="aboutUs"><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${userId != null }">

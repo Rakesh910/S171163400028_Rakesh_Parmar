@@ -36,8 +36,8 @@
 					</sec:authorize>
 					<li><a href="#brands"><span class="glyphicon glyphicon-th"></span>&nbsp;Brands</a></li>
 					<li><a href="#Arrivals"><span class="glyphicon glyphicon-th"></span>&nbsp;New Arrivals</a></li>
-					<li><a href=""><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
-					<li><a href=""><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
+					<li><a href="contactUs"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
+					<li><a href="aboutUs"><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${userId != null }">

@@ -31,7 +31,7 @@
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="home">Home</a></li>
+					<li><a href="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -41,8 +41,8 @@
 						</ul>
 					</li>
 
-					<li><a href="">Contact Us</a></li>
-					<li><a href="">About Us</a></li>
+					<li><a href="contactUs"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
+					<li><a href="aboutUs"><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${userId != null }">
@@ -65,22 +65,42 @@
 			<ol class="breadcrumb">
 				<li><a href="home">Home</a></li>
 				<c:if test="${isUserClickBrand == true }">
-					<li class="active"><b>${brandList.brand_name }</b></li>
+					<li class="active">Brand :<b>${brandList.brand_name }</b></li>
 				</c:if>
 				<c:if test="${isUserClickByFilterID == true }">
 					<c:if test="${indexNumber == 0 }">
-						<li><a href="showProductList?id=${brandList.brand_id}">${brandList.brand_name }</a></li>
-						<li class="active"><b>${resultList.cat_name }</b></li>
+						<li>Brand: <strong> <a href="showProductList?id=${brandList.brand_id}">${brandList.brand_name }</a></strong></li>
+						<li class="active">Category:<b>${resultList.cat_name }</b></li>
 					</c:if>
 					<c:if test="${indexNumber == 1 }">
-						<label>Product Size:-</label><li class="active">${resultList.size_name }</li>
+					<li class="active">Product Size : <strong>${resultList.size_name }</strong></li>
+					</c:if>
+					
+					<c:if test="${indexNumber == 2 }">
+					<li class="active">FrameColor : <strong>${resultList.frameColor_name }</strong></li>
+					</c:if>
+					
+					<c:if test="${indexNumber == 3 }">
+					<li class="active">Frame Material : <strong>${resultList.frameMaterial_name }</strong></li>
+					</c:if>
+					
+					<c:if test="${indexNumber == 4 }">
+					<li class="active">Frame Type : <strong>${resultList.frameType_name }</strong></li>
+					</c:if>
+					
+					<c:if test="${indexNumber == 5 }">
+					<li class="active">Lens Color : <strong>${resultList.lensColor_name }</strong></li>
+					</c:if>
+					
+					<c:if test="${indexNumber == 6 }">
+					<li class="active">Lens Material : <strong>${resultList.lensMaterial_name }</strong></li>
 					</c:if>
 				</c:if>
 				<li class="pull-right">Total <strong>${foundSize}</strong> Products Are Available</li>
 			</ol>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="min-height: 338px;">
 		<!-- Sidebar Column -->
 		<div class="col-md-2">
 			<div class="panel-group">
@@ -129,7 +149,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${frameColorList}" var="frameColorList">
-									<li><a href="${frameColorList.frameColor_id}">${frameColorList.frameColor_name }</a></li>
+									<li><a href="productListByFilterID?id=${frameColorList.frameColor_id}&bid=${brandList.brand_id}&index=2">${frameColorList.frameColor_name }</a></li>
 								</c:forEach>
 
 							</ul>
@@ -147,7 +167,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${frameMaterialList}" var="frameMaterialList">
-									<li><a href="${frameMaterialList.frameMaterial_id}">${frameMaterialList.frameMaterial_name }</a></li>
+									<li><a href="productListByFilterID?id=${frameMaterialList.frameMaterial_id}&bid=${brandList.brand_id}&index=3">${frameMaterialList.frameMaterial_name }</a></li>
 								</c:forEach>
 
 							</ul>
@@ -165,7 +185,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${frameTypeList}" var="frameTypeList">
-									<li><a href="${frameTypeList.frameType_id}">${frameTypeList.frameType_name }</a></li>
+									<li><a href="productListByFilterID?id=${frameTypeList.frameType_id}&bid=${brandList.brand_id}&index=4">${frameTypeList.frameType_name }</a></li>
 								</c:forEach>
 
 							</ul>
@@ -183,7 +203,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${lensColorList}" var="lensColorList">
-									<li><a href="${lensColorList.lensColor_id}">${lensColorList.lensColor_name }</a></li>
+									<li><a href="productListByFilterID?id=${lensColorList.lensColor_id}&bid=${brandList.brand_id}&index=5">${lensColorList.lensColor_name }</a></li>
 								</c:forEach>
 
 							</ul>
@@ -201,7 +221,7 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills nav-stacked">
 								<c:forEach items="${lensMaterialList}" var="lensMaterialList">
-									<li><a href="${lensMaterialList.lensMaterial_id}">${lensMaterialList.lensMaterial_name }</a></li>
+									<li><a href="productListByFilterID?id=${lensMaterialList.lensMaterial_id}&bid=${brandList.brand_id}&index=6">${lensMaterialList.lensMaterial_name }</a></li>
 								</c:forEach>
 
 							</ul>
@@ -214,11 +234,12 @@
 
 		</div>
 		<!-- Content Column -->
-		<div class="col-md-10 ">
-			<!-- <h2 class="page-header">Section Heading</h2> --></div>
+		<div class="col-md-10" >
+			<!-- <h2 class="page-header">Section Heading</h2> -->
 			<c:choose>
 				<c:when test="${foundSize <= 0}">
-				<h1>Sorry..No Products Are Available Right Now.</h1>
+				<br><br><br><br>
+				<h1 class="text-center">Sorry..No Products Are Available Right Now.</h1>
 				
 				</c:when>
 				<c:otherwise>
@@ -233,7 +254,7 @@
 				</c:otherwise>
 			</c:choose>
 			
-			  
+			  </div>
 			  
 	</div>
 

@@ -63,10 +63,9 @@
 	<div class="content-wrapper">
 		<div class="container">
 			<div class="col-md-5">
-				<img src="${productDetail.product_image}" class="img-thumbnail" alt="Image"
-					style="height: 70%; width: 100%;">
-					 <a href="addToCart?id=${productDetail.product_id}" class="btn btn-success btn-lg">ADD TO CART</a>
-					 <a href="#" class="btn btn-info btn-lg">BUY NOW</a>
+				<img src="${productDetail.product_image}" data-toggle="magnify" class="img-thumbnail" alt="Image" style="height: 50%; width: 100%;">
+					 <a href="addToCart?id=${productDetail.product_id}" class="btn btn-success btn-lg btn-block">ADD TO CART</a>
+					 
 			</div>
 			<div class="col-md-6">
 				
@@ -134,7 +133,7 @@
 </div>
 <hr>
 
-	<div class="container">
+	<!-- <div class="container">
 		<div class="col-xs-12">
 			<div class="carousel slide" id="myCarousel">
 				<div class="carousel-inner">
@@ -189,7 +188,7 @@
 							</li>
 						</ul>
 					</div>
-					<!-- /Slide1 -->
+					/Slide1
 					<div class="item">
 						<ul class="thumbnails">
 							<li class="col-sm-3">
@@ -242,7 +241,7 @@
 							</li>
 						</ul>
 					</div>
-					<!-- /Slide2 -->
+					/Slide2
 					<div class="item">
 						<ul class="thumbnails">
 							<li class="col-sm-3">
@@ -295,7 +294,7 @@
 							</li>
 						</ul>
 					</div>
-					<!-- /Slide3 -->
+					/Slide3
 				</div>
 
 
@@ -307,12 +306,12 @@
 								class="glyphicon glyphicon-chevron-right"></i></li>
 					</ul>
 				</nav>
-				<!-- /.control-box -->
+				/.control-box
 
 			</div>
-			<!-- /#myCarousel -->
+			/#myCarousel
 		</div>
-	</div>
+	</div> -->
 	<hr>
 <%@ include file="footer.jsp"%>
 </body>

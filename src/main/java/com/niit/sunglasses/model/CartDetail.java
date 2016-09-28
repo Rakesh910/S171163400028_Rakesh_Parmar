@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -30,8 +32,10 @@ public class CartDetail implements Serializable {
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.
 	private Product product;
 
+	@NotBlank(message="Quantity Should Not be Blank")
 	private int quantity;
 	
+	@NotBlank(message="Total Should Not be Blank")
 	private float total;
 	
 	@ManyToOne(fetch=FetchType.EAGER) 

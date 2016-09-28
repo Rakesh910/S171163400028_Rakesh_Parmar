@@ -36,15 +36,15 @@ public class BrandController {
 		return brandSrv.getAllBrands();
 	}
 	
-	@RequestMapping(value = "/saveBrand", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveBrand", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("brandAttribute") Brand brandObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickBrand","true");
 		try
 		{
 			if(result.hasErrors())
-			{
-				mv.addObject("message","Error in BindingResult");
+			{	
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else if(brandObj.getFilePath(srv.getRealPath("/"), srv.getContextPath()) == "fail"){
 				String str = brand.getBrand_image();
@@ -73,9 +73,9 @@ public class BrandController {
 		}
 	}
 	
-	@RequestMapping(value="/editBrand")
+	@RequestMapping(value="AdminPages/editBrand")
 	public ModelAndView editBrand(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickBrand","true");
 		try {
 			brand = brandSrv.getById(id);
@@ -109,9 +109,9 @@ public class BrandController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteBrand")
+	@RequestMapping(value="AdminPages/deleteBrand")
 	public ModelAndView removeBrand(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickBrand","true");
 		String message;
 		try {

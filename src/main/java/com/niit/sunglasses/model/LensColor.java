@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table
 public class LensColor implements Serializable {
@@ -23,6 +25,7 @@ public class LensColor implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int lensColor_id;
 	
+	@NotBlank(message="Lens Color Name Should Not be Blank")
 	private String lensColor_name;
 	
 	private boolean status;

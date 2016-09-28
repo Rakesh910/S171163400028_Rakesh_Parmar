@@ -30,7 +30,7 @@ Add Supplier
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="modal-dialog" >
-	<form:form method="POST" commandName="supplierAttribute" action="${pageContext.request.contextPath}/saveSupplier" enctype="multipart/form-data">
+	<form:form method="POST" commandName="supplierAttribute" action="${pageContext.request.contextPath}/AdminPages/saveSupplier" enctype="multipart/form-data">
 		
 			<c:if test="${supplierAttribute.supplier_id != 0 }">
 				<div class="form-group">

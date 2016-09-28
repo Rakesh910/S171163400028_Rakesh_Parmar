@@ -30,7 +30,7 @@ AddFrameTypes
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="frameTypeAttribute" action="${pageContext.request.contextPath}/saveFrameType" enctype="multipart/form-data">
+	<form:form method="POST" commandName="frameTypeAttribute" action="${pageContext.request.contextPath}/AdminPages/saveFrameType" enctype="multipart/form-data">
 		
 			<c:if test="${frameTypeAttribute.frameType_id != 0 }">
 				<div class="form-group">

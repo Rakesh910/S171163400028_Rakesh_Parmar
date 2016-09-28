@@ -30,7 +30,7 @@ AddLensColors
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="lensColorAttribute" action="${pageContext.request.contextPath}/saveLensColor" enctype="multipart/form-data">
+	<form:form method="POST" commandName="lensColorAttribute" action="${pageContext.request.contextPath}/AdminPages/saveLensColor" enctype="multipart/form-data">
 		
 			<c:if test="${lensColorAttribute.lensColor_id != 0 }">
 				<div class="form-group">

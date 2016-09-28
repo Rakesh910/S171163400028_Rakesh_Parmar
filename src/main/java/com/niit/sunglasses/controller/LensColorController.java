@@ -36,15 +36,15 @@ public class LensColorController {
 		return lensColorSrv.getAllLensColors();
 	}
 	
-	@RequestMapping(value = "/saveLensColor", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveLensColor", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("lensColorAttribute") LensColor lensColorObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensColor","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				lensColorObj.setStatus(true);
@@ -61,9 +61,9 @@ public class LensColorController {
 		}
 	}
 	
-	@RequestMapping(value="/editLensColor")
+	@RequestMapping(value="AdminPages/editLensColor")
 	public ModelAndView editLensColor(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensColor","true");
 		try {
 			lensColor = lensColorSrv.getById(id);
@@ -97,9 +97,9 @@ public class LensColorController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteLensColor")
+	@RequestMapping(value="AdminPages/deleteLensColor")
 	public ModelAndView removeLensColor(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensColor","true");
 		String message;
 		try {

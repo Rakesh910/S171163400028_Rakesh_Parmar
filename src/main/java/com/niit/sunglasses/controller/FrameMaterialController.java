@@ -36,15 +36,15 @@ public class FrameMaterialController {
 		return frameMaterialSrv.getAllFrameMaterials();
 	}
 	
-	@RequestMapping(value = "/saveFrameMaterial", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveFrameMaterial", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("frameMaterialAttribute") FrameMaterial frameMaterialObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameMaterial","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				frameMaterialObj.setStatus(true);
@@ -61,9 +61,9 @@ public class FrameMaterialController {
 		}
 	}
 	
-	@RequestMapping(value="/editFrameMaterial")
+	@RequestMapping(value="AdminPages/editFrameMaterial")
 	public ModelAndView editFrameMaterial(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameMaterial","true");
 		try {
 			frameMaterial = frameMaterialSrv.getById(id);
@@ -97,9 +97,9 @@ public class FrameMaterialController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteFrameMaterial")
+	@RequestMapping(value="AdminPages/deleteFrameMaterial")
 	public ModelAndView removeFrameMaterial(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameMaterial","true");
 		String message;
 		try {

@@ -30,7 +30,7 @@ AddFrameColors
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="frameColorAttribute" action="${pageContext.request.contextPath}/saveFrameColor" enctype="multipart/form-data">
+	<form:form method="POST" commandName="frameColorAttribute" action="${pageContext.request.contextPath}/AdminPages/saveFrameColor" enctype="multipart/form-data">
 		
 			<c:if test="${frameColorAttribute.frameColor_id != 0 }">
 				<div class="form-group">

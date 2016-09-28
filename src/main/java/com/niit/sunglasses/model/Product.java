@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,16 +32,22 @@ public class Product implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int product_id;
 	
+	@NotBlank(message=" Name Should Not be Blank")
 	private String product_name;
 	
+	@NotBlank(message="Price Should Not be Blank")
 	private float product_price;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private int product_discount;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private int product_UV;
+	
 	
 	private boolean status;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private int stock;
 	
 	private boolean newArrival;

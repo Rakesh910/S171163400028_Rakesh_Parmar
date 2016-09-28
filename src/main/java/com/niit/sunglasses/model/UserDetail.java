@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,16 +28,23 @@ public class UserDetail implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int user_id;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String user_fname;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String user_lname;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String user_address;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String user_contact;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
+	@Email
 	private String user_email;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String user_password;
 	
 	private boolean enabled;

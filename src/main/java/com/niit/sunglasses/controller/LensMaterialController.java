@@ -36,15 +36,15 @@ public class LensMaterialController {
 		return lensMaterialSrv.getAllLensMaterials();
 	}
 	
-	@RequestMapping(value = "/saveLensMaterial", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveLensMaterial", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("lensMaterialAttribute") LensMaterial lensMaterialObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensMaterial","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				lensMaterialObj.setStatus(true);
@@ -61,9 +61,9 @@ public class LensMaterialController {
 		}
 	}
 	
-	@RequestMapping(value="/editLensMaterial")
+	@RequestMapping(value="AdminPages/editLensMaterial")
 	public ModelAndView editLensMaterial(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensMaterial","true");
 		try {
 			lensMaterial = lensMaterialSrv.getById(id);
@@ -97,9 +97,9 @@ public class LensMaterialController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteLensMaterial")
+	@RequestMapping(value="AdminPages/deleteLensMaterial")
 	public ModelAndView removeLensMaterial(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickLensMaterial","true");
 		String message;
 		try {

@@ -54,7 +54,7 @@
 	<div class="alert-danger animated ">${message }</div>
 	<hr>
 	<form:form method="POST" commandName="productAttribute"
-			action="${pageContext.request.contextPath}/saveProduct"
+			action="${pageContext.request.contextPath}/AdminPages/saveProduct"
 			enctype="multipart/form-data">
 	<div class="col-xs-6 col-md-6">
 			<c:if test="${productAttribute.product_id != 0 }">

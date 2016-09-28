@@ -53,7 +53,7 @@ public class OrderDetailController {
 				CartDetail cart = new CartDetail();
 				cart.setProduct(product);
 				cart.setQuantity(1);
-				cart.setTotal((cart.getQuantity()*((product.getProduct_price()-(((product.getProduct_price())*(product.getProduct_discount()))/100)))));
+				cart.setTotal(Math.round((cart.getQuantity()*((product.getProduct_price()-(((product.getProduct_price())*(product.getProduct_discount()))/100))))));
 				grandTotal = (float) (grandTotal + cart.getTotal());
 				cartDetail.add(cart);
 				order.setCartDetail(cartDetail);
@@ -82,9 +82,9 @@ public class OrderDetailController {
 		ModelAndView mv = new ModelAndView("UserPages/viewCart");
 		mv.addObject("order",order);
 		try {
-			System.out.println("Size"+order.getCartDetail().size());
+			mv.addObject("cartList",order.getCartDetail().size());
 		} catch (Exception e) {
-			System.out.println("Size not Found");
+			mv.addObject("cartList",0);
 		}
 		
 		return mv;
@@ -117,6 +117,11 @@ public class OrderDetailController {
 		}
 		mv.addObject("order",order);
 		order.setGrandTotal(updateGrandTotal);
+		try {
+			mv.addObject("cartList",order.getCartDetail().size());
+		} catch (Exception e) {
+			mv.addObject("cartList",0);
+		}
 		session.setAttribute("cartSize", order.getCartDetail().size());
 		session.setAttribute("order", order);
 		return mv;

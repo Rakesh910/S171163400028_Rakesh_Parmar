@@ -80,16 +80,16 @@ public class ProductController {
 		return productSrv.getAllProducts();
 	}
 	
-	@RequestMapping(value = "/saveProduct", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveProduct", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("productAttribute") Product productObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProduct","true");
 		setLists(mv);
 		try
 		{
 			if(result.hasErrors())
 			{	
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else if(productObj.getFilePath(srv.getRealPath("/"), srv.getContextPath()) == "fail"){
 				System.out.println("Image :-"+product.getProduct_image());
@@ -177,9 +177,9 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value="/editProduct")
+	@RequestMapping(value="AdminPages/editProduct")
 	public ModelAndView editProduct(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProduct","true");
 		setLists(mv);
 		try {
@@ -193,9 +193,9 @@ public class ProductController {
 		}
 	}
 	
-	@RequestMapping(value="/deleteProduct")
+	@RequestMapping(value="AdminPages/deleteProduct")
 	public ModelAndView removeProduct(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProduct","true");
 		setLists(mv);
 		String message;

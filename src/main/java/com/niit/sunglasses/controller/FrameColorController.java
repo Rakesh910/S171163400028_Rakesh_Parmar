@@ -36,15 +36,15 @@ public class FrameColorController {
 		return frameColorSrv.getAllFrameColors();
 	}
 	
-	@RequestMapping(value = "/saveFrameColor", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveFrameColor", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("frameColorAttribute") FrameColor frameColorObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameColor","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				frameColorObj.setStatus(true);
@@ -61,9 +61,9 @@ public class FrameColorController {
 		}
 	}
 	
-	@RequestMapping(value="/editFrameColor")
+	@RequestMapping(value="AdminPages/editFrameColor")
 	public ModelAndView editFrameColor(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameColor","true");
 		try {
 			frameColor = frameColorSrv.getById(id);
@@ -97,9 +97,9 @@ public class FrameColorController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteFrameColor")
+	@RequestMapping(value="AdminPages/deleteFrameColor")
 	public ModelAndView removeFrameColor(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameColor","true");
 		String message;
 		try {

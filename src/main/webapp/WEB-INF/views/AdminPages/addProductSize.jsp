@@ -30,7 +30,7 @@ AddProductSizes
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="productSizeAttribute" action="${pageContext.request.contextPath}/saveProductSize" enctype="multipart/form-data">
+	<form:form method="POST" commandName="productSizeAttribute" action="${pageContext.request.contextPath}/AdminPages/saveProductSize" enctype="multipart/form-data">
 		
 			<c:if test="${productSizeAttribute.size_id != 0 }">
 				<div class="form-group">

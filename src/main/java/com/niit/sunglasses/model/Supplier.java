@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table
 public class Supplier implements Serializable {
@@ -24,12 +27,17 @@ public class Supplier implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int supplier_id;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String supplier_name;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String supplier_contact;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
+	@Email
 	private String supplier_email;
 	
+	@NotBlank(message="This Feild Should Not be Blank")
 	private String supplier_address;
 	
 	private boolean status;

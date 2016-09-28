@@ -36,15 +36,15 @@ public class ProductSizeController {
 		return productSizeSrv.getAllProductSizes();
 	}
 	
-	@RequestMapping(value = "/saveProductSize", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveProductSize", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("productSizeAttribute") ProductSize productSizeObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProductSize","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				productSizeObj.setStatus(true);
@@ -61,9 +61,9 @@ public class ProductSizeController {
 		}
 	}
 	
-	@RequestMapping(value="/editProductSize")
+	@RequestMapping(value="AdminPages/editProductSize")
 	public ModelAndView editProductSize(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProductSize","true");
 		try {
 			productSize = productSizeSrv.getById(id);
@@ -97,9 +97,9 @@ public class ProductSizeController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteProductSize")
+	@RequestMapping(value="AdminPages/deleteProductSize")
 	public ModelAndView removeProductSize(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickProductSize","true");
 		String message;
 		try {

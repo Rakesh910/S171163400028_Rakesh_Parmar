@@ -30,15 +30,15 @@ public class SupplierController {
 		return supplierSrv.getAllSuppliers();
 	}
 	
-	@RequestMapping(value = "/saveSupplier", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveSupplier", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("supplierAttribute") Supplier supplierObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickSupplier","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				supplierObj.setStatus(true);
@@ -55,9 +55,9 @@ public class SupplierController {
 		}
 	}
 	
-	@RequestMapping(value="/editSupplier")
+	@RequestMapping(value="AdminPages/editSupplier")
 	public ModelAndView editSupplier(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickSupplier","true");
 		try {
 			supplier = supplierSrv.getById(id);
@@ -91,9 +91,9 @@ public class SupplierController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteSupplier")
+	@RequestMapping(value="AdminPages/deleteSupplier")
 	public ModelAndView removeSupplier(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickSupplier","true");
 		String message;
 		try {

@@ -14,6 +14,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -39,6 +43,8 @@ public class Brand implements Serializable{
 		this.category = category;
 	}
 
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=3,max=20,message="Name Must be a 3 to 20 Characters")
 	private String brand_name;
 	
 	private String brand_image;

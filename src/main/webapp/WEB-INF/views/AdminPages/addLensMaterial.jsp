@@ -30,7 +30,7 @@ AddLensMaterials
 <div class="alert-danger animated ">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="lensMaterialAttribute" action="${pageContext.request.contextPath}/saveLensMaterial" enctype="multipart/form-data">
+	<form:form method="POST" commandName="lensMaterialAttribute" action="${pageContext.request.contextPath}/AdminPages/saveLensMaterial" enctype="multipart/form-data">
 		
 			<c:if test="${lensMaterialAttribute.lensMaterial_id != 0 }">
 				<div class="form-group">

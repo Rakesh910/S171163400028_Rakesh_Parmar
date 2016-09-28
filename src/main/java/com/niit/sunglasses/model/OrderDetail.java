@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -29,14 +31,19 @@ public class OrderDetail implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int order_id;
 	
+	@NotBlank(message="GrandTotal Should Not be Blank")
 	private float grandTotal;
 	
+	@NotBlank(message="Date Should Not be Blank")
 	private Date orderDate;
+	
 	
 	private boolean payment_status;
 	
+	@NotBlank(message="Shipping Address Should Not be Blank")
 	private String shipping_address;
 	
+	@NotBlank(message="Billing Address Name Should Not be Blank")
 	private String billing_address;
 	
 	public String getShipping_address() {

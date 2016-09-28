@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table
 public class FrameType implements Serializable {
@@ -24,6 +26,7 @@ public class FrameType implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int frameType_id;
 	
+	@NotBlank(message="Frame Type Name Should Not be Blank")
 	private String frameType_name;
 	
 	private boolean status;

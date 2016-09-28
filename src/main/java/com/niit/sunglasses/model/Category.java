@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -34,7 +36,9 @@ public class Category implements Serializable {
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.
 	private Brand brand;
 	
+	@NotBlank(message="Category Name Should Not be Blank")
 	private String cat_name;
+	
 	
 	private boolean status;
 	

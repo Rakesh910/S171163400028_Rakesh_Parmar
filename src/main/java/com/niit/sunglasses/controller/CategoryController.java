@@ -40,15 +40,15 @@ public class CategoryController {
 		return categorySrv.getAllCategorys();
 	}
 	
-	@RequestMapping(value = "/saveCategory", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveCategory", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("categoryAttribute") Category categoryObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickCategory","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				categoryObj.setStatus(true);
@@ -66,9 +66,9 @@ public class CategoryController {
 		}
 	}
 	
-	@RequestMapping(value="/editCategory")
+	@RequestMapping(value="AdminPages/editCategory")
 	public ModelAndView editCategory(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickCategory","true");
 		try {
 			category = categorySrv.getById(id);
@@ -82,9 +82,9 @@ public class CategoryController {
 		}
 	}
 	
-	@RequestMapping(value="/deleteCategory")
+	@RequestMapping(value="AdminPages/deleteCategory")
 	public ModelAndView removeCategory(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickCategory","true");
 		String message;
 		try {

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table
 public class CardDetail implements Serializable  {
@@ -23,18 +25,25 @@ public class CardDetail implements Serializable  {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int card_id;
 	
+	@NotBlank(message="CardNumber Should Not be Blank")
 	private String cardNumber;
 	
+	@NotBlank(message="ExpiryMonth Should Not be Blank")
 	private String expiryMonth;
 	
+	@NotBlank(message="ExpiryYear Should Not be Blank")
 	private String expiryYear;
 	
+	@NotBlank(message="CVVNumber Should Not be Blank")
 	private String cvNumber;
 	
+	@NotBlank(message="Name Should Not be Blank")
 	private String nameOnCard;
 	
+	@NotBlank(message="Cost Should Not be Blank")
 	private double totalCost;
 	
+	@NotBlank(message="CardType Should Not be Blank")
 	private String cardType;
 	
 	@OneToOne(mappedBy = "cardDetail",fetch = FetchType.EAGER)

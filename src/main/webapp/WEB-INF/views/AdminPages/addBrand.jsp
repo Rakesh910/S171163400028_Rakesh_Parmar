@@ -30,7 +30,7 @@ AddBrands
 <div class="alert-danger animated">${message }</div>
 <hr>
 <div class="col-sm-6 " >
-	<form:form method="POST" commandName="brandAttribute" action="${pageContext.request.contextPath}/saveBrand" enctype="multipart/form-data">
+	<form:form method="POST" commandName="brandAttribute" action="${pageContext.request.contextPath}/AdminPages/saveBrand" enctype="multipart/form-data">
 		
 			<c:if test="${brandAttribute.brand_id != 0 }">
 				<div class="form-group">
@@ -38,8 +38,9 @@ AddBrands
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="brand_name" class="form-control"
-				placeholder="New Brand Name" required="true" autofocus="true" />
+			<form:input path="brand_name" class="form-control" title="Enter 3 to 20 Characters[Number's are not allow]" pattern="[A-Za-z].{3,20}"
+			placeholder="New Brand Name" required="true" autofocus="true" />
+			<form:errors path="brand_name" class="alert-danger"/>
 		</div>
 		<div class="form-group">
 		<c:choose>
@@ -72,7 +73,7 @@ AddBrands
 <div class="col-sm-6" data-ng-app="app" data-ng-controller="BrandController">
 	<div class="pull-right">
 		<input class=" form-control" type="text" size="40"
-			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
+			data-ng-model="searchTerm" placeholder="Enter Text for Search" title="Enter String only" pattern="[A-Za-z]" />
 	</div>
 	<table class="table table-striped">
 		<thead>

@@ -36,15 +36,15 @@ public class FrameTypeController {
 		return frameTypeSrv.getAllFrameTypes();
 	}
 	
-	@RequestMapping(value = "/saveFrameType", method=RequestMethod.POST)
+	@RequestMapping(value = "AdminPages/saveFrameType", method=RequestMethod.POST)
 	public ModelAndView getSaveCategory(@Valid @ModelAttribute("frameTypeAttribute") FrameType frameTypeObj, BindingResult result, Model model)
-	{	ModelAndView mv = new ModelAndView("adminIndex");
+	{	ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameType","true");
 		try
 		{
 			if(result.hasErrors())
 			{
-				mv.addObject("message","Error in BindingResult");
+				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
 				return mv;
 			}else{
 				frameTypeObj.setStatus(true);
@@ -61,9 +61,9 @@ public class FrameTypeController {
 		}
 	}
 	
-	@RequestMapping(value="/editFrameType")
+	@RequestMapping(value="AdminPages/editFrameType")
 	public ModelAndView editFrameType(@RequestParam(value="id") int id){
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameType","true");
 		try {
 			frameType = frameTypeSrv.getById(id);
@@ -97,9 +97,9 @@ public class FrameTypeController {
 		}
 	}*/
 	
-	@RequestMapping(value="/deleteFrameType")
+	@RequestMapping(value="AdminPages/deleteFrameType")
 	public ModelAndView removeFrameType(@RequestParam(value="id") int id) throws Exception{
-		ModelAndView mv = new ModelAndView("adminIndex");
+		ModelAndView mv = new ModelAndView("AdminPages/adminIndex");
 		mv.addObject("isAdminClickFrameType","true");
 		String message;
 		try {

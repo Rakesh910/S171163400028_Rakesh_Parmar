@@ -31,7 +31,7 @@
 	<div class="alert-danger animated ">${message }</div>
 	<hr>
 	<div class="col-sm-6 well">
-		<form:form method="POST" commandName="categoryAttribute" action="${pageContext.request.contextPath}/saveCategory">
+		<form:form method="POST" commandName="categoryAttribute" action="${pageContext.request.contextPath}/AdminPages/saveCategory">
 			<c:if test="${categoryAttribute.cat_id != 0 }">
 				<div class="form-group">
 					<form:input path="cat_id" class="form-control" type="hidden" value="${categoryAttribute.cat_id}" />

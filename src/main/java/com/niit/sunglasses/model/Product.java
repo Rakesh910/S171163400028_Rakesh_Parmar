@@ -14,7 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,22 +35,22 @@ public class Product implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int product_id;
 	
-	@NotBlank(message=" Name Should Not be Blank")
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=3,max=100,message="Name Must be a 3 to 20 Characters")
 	private String product_name;
 	
-	@NotBlank(message="Price Should Not be Blank")
+	@Min(value=0,message="Cannot give a price less than zero")
 	private float product_price;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
 	private int product_discount;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
 	private int product_UV;
 	
 	
 	private boolean status;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
+	@Min(value=1,message="Cannot give a stock less than zero")
+	@Max(value=1000,message="Cannot give a stock More than 1000 Quantity")
 	private int stock;
 	
 	private boolean newArrival;

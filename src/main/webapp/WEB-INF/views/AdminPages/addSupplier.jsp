@@ -25,7 +25,7 @@
 	});
 </script>
 <div class="container-fluid">
-Add Supplier
+<h3 class="text-center"><strong>MANAGE SUPPLIER</strong></h3>
 <hr>
 <div class="alert-danger animated ">${message }</div>
 <hr>
@@ -38,18 +38,25 @@ Add Supplier
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="supplier_name" class="form-control" placeholder="New Supplier Name" required="true" autofocus="true" />
+			<form:input path="supplier_name" class="form-control" placeholder="New Supplier Name" title="Enter 3 to 50 Characters"
+			required="true" autofocus="true" />
+			<form:errors path="supplier_name" class="alert-danger"/>
 		</div>
 		
 		<div class="form-group">
-					<form:textarea path="supplier_address" class="form-control" placeholder="Supplier Address" required="true"/>
+					<form:textarea path="supplier_address" class="form-control" placeholder="Supplier Address" title="Enter 3 to 50 Characters"
+					required="true"/>
+					<form:errors path="supplier_address" class="alert-danger"/>
 				</div>
 				
 				<div class="form-group">
-					<form:input path="supplier_contact" class="form-control" placeholder="Supplier Mobile Number" required="true" />
+					<form:input path="supplier_contact" class="form-control" placeholder="Supplier Mobile Number" title="Enter Numbers Only" pattern="^(\+[\d]{1,5}|0)?[7-9]\d{9}"
+					 required="true" />
+					<form:errors path="supplier_contact" class="alert-danger"/>
 				</div>
 				<div class="form-group">
-					<form:input path="supplier_email" class="form-control" placeholder="Supplier Email Address" required="true" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+					<form:input path="supplier_email" class="form-control" placeholder="Supplier Email Address" required="true" type="email" title="Enter Valid Email Id" />
+					<form:errors path="supplier_email" class="alert-danger"/>
 				</div>
 	<c:choose>
 		<c:when test="${supplierAttribute.supplier_id != 0 }">
@@ -76,7 +83,7 @@ Add Supplier
 		<input class=" form-control" type="text" size="40"
 			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

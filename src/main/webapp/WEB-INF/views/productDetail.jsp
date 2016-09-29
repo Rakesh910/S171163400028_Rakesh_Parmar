@@ -19,7 +19,7 @@
 <%@ include file="header.jsp" %>
 	<hr>
 <nav class="navbar navbar-inverse" data-spy="affix"
-		data-offset-top="200">
+		data-offset-top="82">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -64,8 +64,9 @@
 		<div class="container">
 			<div class="col-md-5">
 				<img src="${productDetail.product_image}" data-toggle="magnify" class="img-thumbnail" alt="Image" style="height: 50%; width: 100%;">
+					<c:if test="${productDetail.newArrival != true }">
 					 <a href="addToCart?id=${productDetail.product_id}" class="btn btn-success btn-lg btn-block">ADD TO CART</a>
-					 
+					 </c:if>
 			</div>
 			<div class="col-md-6">
 				

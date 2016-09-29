@@ -25,7 +25,7 @@
 	});
 </script>
 <div class="container-fluid">
-AddBrands
+<h3 class="text-center"><strong>MANAGE BRAND</strong></h3>
 <hr>
 <div class="alert-danger animated">${message }</div>
 <hr>
@@ -38,7 +38,7 @@ AddBrands
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="brand_name" class="form-control" title="Enter 3 to 20 Characters[Number's are not allow]" pattern="[A-Za-z].{3,20}"
+			<form:input path="brand_name" class="form-control" title="Enter 3 to 20 Characters"
 			placeholder="New Brand Name" required="true" autofocus="true" />
 			<form:errors path="brand_name" class="alert-danger"/>
 		</div>
@@ -72,10 +72,9 @@ AddBrands
 </div>
 <div class="col-sm-6" data-ng-app="app" data-ng-controller="BrandController">
 	<div class="pull-right">
-		<input class=" form-control" type="text" size="40"
-			data-ng-model="searchTerm" placeholder="Enter Text for Search" title="Enter String only" pattern="[A-Za-z]" />
+		<input class=" form-control" type="text" size="40" data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

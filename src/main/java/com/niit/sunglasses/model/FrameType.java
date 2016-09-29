@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -26,7 +27,8 @@ public class FrameType implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int frameType_id;
 	
-	@NotBlank(message="Frame Type Name Should Not be Blank")
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=3,max=20,message="Name Must be a 3 to 20 Characters")
 	private String frameType_name;
 	
 	private boolean status;

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,6 +38,7 @@ public class Category implements Serializable {
 	private Brand brand;
 	
 	@NotBlank(message="Category Name Should Not be Blank")
+	@Length(min=3,max=20,message="Name Must be a 3 to 20 Characters")
 	private String cat_name;
 	
 	

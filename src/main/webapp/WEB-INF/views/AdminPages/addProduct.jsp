@@ -49,7 +49,7 @@
 	});
 </script>
 <div class="container-fluid">
-	AddProducts
+	<h3 class="text-center"><strong>MANAGE PRODUCT</strong></h3>
 	<hr>
 	<div class="alert-danger animated ">${message }</div>
 	<hr>
@@ -87,7 +87,8 @@
 						<c:otherwise>
 							<div class="form-group">
 								<form:select path="brand.brand_id" id="brandId" class="form-control" required="true" autofocus="true">
-									<form:option class="form-control" value="0">Select Brand</form:option>
+									<option value="" disabled selected>Select Brand</option>	
+									<!-- <form:option class="form-control" value="0">Select Brand</form:option> -->
 									<form:options class="form-control" items="${brandList}" itemValue="brand_id" itemLabel="brand_name" />
 								</form:select>
 							</div>
@@ -118,7 +119,8 @@
 						<c:otherwise>
 							<div class="form-group">
 								<form:select path="category.cat_id" class="form-control"  id="categoryId" required="true">
-							<form:option class="form-control" value="0">Select Category</form:option>
+							<!-- <form:option class="form-control" value="0">Select Category</form:option> -->
+							<option value="" disabled selected>Select Category</option>
 							<%-- <form:options class="form-control" items="${categoryList}" itemValue="cat_id" itemLabel="cat_name"/> --%>
 						</form:select>
 							</div>
@@ -128,7 +130,9 @@
 			</div>
 			
 			<div class="form-group">
-				<form:input path="product_name" class="form-control" placeholder="New Product Name" required="true" autofocus="true" />
+				<form:input path="product_name" class="form-control" placeholder="New Product Name" title="Enter 3 to 100 Characters"
+				  />
+				<form:errors path="product_name" class="alert-danger"/>
 			</div>
 	
 			<div class="row">
@@ -155,7 +159,8 @@
 						<c:otherwise>
 							<div class="form-group">
 								<form:select path="supplier.supplier_id" class="form-control" required="true">
-							<form:option class="form-control" value="0">Select Supplier</form:option>
+							<!-- <form:option class="form-control" value="0">Select Supplier</form:option> -->
+							<option value="" disabled selected>Select Supplier</option>
 							<form:options class="form-control" items="${supplierList}" itemValue="supplier_id" itemLabel="supplier_name"/>
 						</form:select>
 							</div>
@@ -176,10 +181,12 @@
 			</div>
 			<div class="row">
 			<div class="col-xs-6 col-md-6  form-group">
-				<form:input path="product_price" class="form-control" placeholder="Enter Price" required="true" />
+				<form:input path="product_price" class="form-control" placeholder="Enter Price" title="Enter Numbers Only" required="true" />
+				<form:errors path="product_price" class="alert-danger"/>
 			</div>
 			<div class="col-xs-6 col-md-6  form-group">
-				<form:input path="stock" class="form-control" placeholder="Stock of Product" required="true" type="number" max="1000" min="1" />
+				<form:input path="stock" class="form-control" placeholder="Stock of Product" title="Enter Numbers Only"  required="true" type="number" max="1000" min="1" />
+			<form:errors path="stock" class="alert-danger"/>
 			</div>
 			</div>
 			
@@ -206,7 +213,8 @@
 						<c:otherwise>
 							<div class="form-group">
 							<form:select path="product_UV" class="form-control" required="true">
-							<form:option value="0">Select UV Protection</form:option>
+							<!-- <form:option value="0">Select UV Protection</form:option> -->
+							<option value="" disabled selected>Select UV Protection</option>
 							<form:option value="10">10%</form:option>
 							<form:option value="20">20%</form:option>
 							<form:option value="30">30%</form:option>
@@ -244,7 +252,8 @@
 						<c:otherwise>
 							<div class="form-group">
 							<form:select path="product_discount" class="form-control" required="true">
-							<form:option value="0">Select Discount</form:option>
+							<!-- <form:option value="0">Select Discount</form:option> -->
+							<option value="" disabled selected>Select Discount</option>
 							<form:option value="10">10%</form:option>
 							<form:option value="20">20%</form:option>
 							<form:option value="30">30%</form:option>
@@ -437,7 +446,7 @@
 			<input class=" form-control" type="text" size="40"
 				data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 		</div>
-		<table class="table table-striped col-md-12">
+		<table class="table table-hover col-md-12">
 			<thead>
 						<tr>
 							<th>ID</th>

@@ -25,7 +25,7 @@
 	});
 </script>
 <div class="container-fluid">
-AddFrameTypes
+<h3 class="text-center"><strong>MANAGE FRAMETYPE</strong></h3>
 <hr>
 <div class="alert-danger animated ">${message }</div>
 <hr>
@@ -38,8 +38,9 @@ AddFrameTypes
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="frameType_name" class="form-control"
+			<form:input path="frameType_name" class="form-control" title="Enter 3 to 20 Characters"
 				placeholder="New FrameType Name" required="true" autofocus="true" />
+				<form:errors path="frameType_name" class="alert-danger"/>
 		</div>
 		
 	<c:choose>
@@ -65,7 +66,7 @@ AddFrameTypes
 		<input class=" form-control" type="text" size="40"
 			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

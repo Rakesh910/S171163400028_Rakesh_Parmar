@@ -1,6 +1,7 @@
 
 				<c:forEach items="${brandList.category}" var="catList">
 					<c:forEach items="${catList.product}" var="productList">
+				
 						<div class="col-md-3">
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -23,6 +24,7 @@
 								</div>
 							</div>
 						</div>
+					
 					</c:forEach>
 				</c:forEach>
 

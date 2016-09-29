@@ -25,7 +25,8 @@
 	});
 </script>
 <div class="container-fluid">
-AddFrameColors
+
+<h3 class="text-center"><strong>MANAGE FRAMECOLOR</strong></h3>
 <hr>
 <div class="alert-danger animated ">${message }</div>
 <hr>
@@ -35,11 +36,13 @@ AddFrameColors
 			<c:if test="${frameColorAttribute.frameColor_id != 0 }">
 				<div class="form-group">
 			<form:input path="frameColor_id" class="form-control" type="hidden" value="${frameColorAttribute.frameColor_id}"/>
+		
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="frameColor_name" class="form-control"
+			<form:input path="frameColor_name" class="form-control" title="Enter 3 to 20 Characters"
 				placeholder="New FrameColor Name" required="true" autofocus="true" />
+				<form:errors path="frameColor_name" class="alert-danger"/>
 		</div>
 	<c:choose>
 		<c:when test="${frameColorAttribute.frameColor_id != 0 }">
@@ -64,7 +67,7 @@ AddFrameColors
 		<input class=" form-control" type="text" size="40"
 			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

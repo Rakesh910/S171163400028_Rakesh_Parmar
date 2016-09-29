@@ -18,7 +18,7 @@
 	<%@ include file="header.jsp" %>
 	<hr>
 	<nav class="navbar navbar-inverse" data-spy="affix"
-		data-offset-top="200">
+		data-offset-top="82">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"

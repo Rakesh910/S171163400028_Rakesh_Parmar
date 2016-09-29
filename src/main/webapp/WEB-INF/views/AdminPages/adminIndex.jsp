@@ -20,12 +20,13 @@
 				<h3>ADMINISTRATOR</h3>
 			</div>
 			<div class="col-sm-6">
-				<img alt="LOGO" src="../resources/images/logo.png" width="70%"
-					height="10%">
+				<a href="../home"><img alt="LOGO" src="../resources/images/logo.png" width="70%"
+					height="10%"></a>
 			</div>
 			<div class="pull-right col-sm-3 text-center">
-				<h4>Welcome ${username }</h4>
-				<a href="../j_spring_security_logout" class="btn btn-info btn-block">Logout</a>
+				<h4>Welcome <strong><i>${username }</i></strong></h4>
+				<a href="../home" class="btn btn-info ">Back To Home</a>
+				<a href="../j_spring_security_logout" class="btn btn-danger ">Logout</a>
 			</div>
 		</div>
 	</div>
@@ -107,7 +108,7 @@
 		</div>
 	</div>
 	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
+		<p>Developed By :- RAKESH PARMAR [171163400028]</p>
 	</footer>
 
 </body>

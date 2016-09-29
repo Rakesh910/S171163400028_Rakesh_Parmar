@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -34,7 +35,7 @@
 				<c:otherwise>
 					<div class="pull-right col-sm-3 text-center">
 				<h4>Welcome ${username }</h4>
-				<a href="logout" class="btn btn-info btn-block">Logout</a>
+				<a href="../j_spring_security_logout" class="btn btn-info btn-block">Logout</a>
 			</div>
 				</c:otherwise>
 			</c:choose>
@@ -43,46 +44,41 @@
 		</div>
 </div>
 <hr>
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="200">
+	<nav class="navbar navbar-inverse" data-spy="affix"
+		data-offset-top="200">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
 			</div>
 			<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="home">Home</a></li>
-				<c:if test="${isUserClickRegister != true }">
-				<li><a href="#brands">Brands</a></li>
-				<li><a href="#Arrivals">New Arrivals</a></li>
-				</c:if>
-				
-				<li><a href="">Contact Us</a></li>
-				<li><a href="">About Us</a></li>
-			</ul>
-			<c:choose>
-				<c:when test="${userId != null }">
+				<ul class="nav navbar-nav">
+					<li><a href="../home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+					<li><a href="../contactUs"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
+					<li><a href="../aboutUs"><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
+				</ul>
+				<c:choose>
+					<c:when test="${userId != null }">
 						<ul class="nav navbar-nav navbar-right">
-							<li ><a href="viewMyCart"  role="button" >My
-									Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
-									(${cartSize}) - Items
+							<li><a href="viewMyCart" role="button">My Cart &nbsp;<span
+									class="glyphicon glyphicon-shopping-cart"></span> (${cartSize})
+									- Items
 							</a></li>
 						</ul>
 					</c:when>
-				<c:otherwise>
-					<ul class="nav navbar-nav navbar-right">
-							<li ><a href="#"  role="button" >My
-									Cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
-									(0) - Items
+					<c:otherwise>
+						<!-- <ul class="nav navbar-nav navbar-right">
+							<li><a href="#" role="button">My Cart &nbsp;<span
+									class="glyphicon glyphicon-shopping-cart"></span> (0) - Items
 							</a></li>
-						</ul>
-				</c:otherwise>
-			</c:choose>
-			
+						</ul> -->
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</nav>

@@ -31,10 +31,8 @@ public class OrderDetail implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int order_id;
 	
-	@NotBlank(message="GrandTotal Should Not be Blank")
 	private float grandTotal;
 	
-	@NotBlank(message="Date Should Not be Blank")
 	private Date orderDate;
 	
 	

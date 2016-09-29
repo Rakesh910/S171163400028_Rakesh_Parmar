@@ -25,7 +25,8 @@
 	});
 </script>
 <div class="container-fluid">
-AddLensColors
+
+<h3 class="text-center"><strong>MANAGE LENSCOLOR</strong></h3>
 <hr>
 <div class="alert-danger animated ">${message }</div>
 <hr>
@@ -38,8 +39,9 @@ AddLensColors
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="lensColor_name" class="form-control"
+			<form:input path="lensColor_name" class="form-control" title="Enter 3 to 20 Characters"
 				placeholder="New LensColor Name" required="true" autofocus="true" />
+				<form:errors path="lensColor_name" class="alert-danger"/>
 		</div>
 	<c:choose>
 		<c:when test="${lensColorAttribute.lensColor_id != 0 }">
@@ -64,7 +66,7 @@ AddLensColors
 		<input class=" form-control" type="text" size="40"
 			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

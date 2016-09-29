@@ -49,6 +49,7 @@ public class CategoryController {
 			if(result.hasErrors())
 			{
 				mv.addObject("message","Record Can't be Added..!!Please Provide Valid Data..!!");
+				mv.addObject("brandList",brandSrv.getAllBrands());
 				return mv;
 			}else{
 				categoryObj.setStatus(true);
@@ -62,6 +63,7 @@ public class CategoryController {
 		catch(HibernateException ex){
 			ex.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("brandList",brandSrv.getAllBrands());
 			return mv;
 		}
 	}
@@ -78,6 +80,7 @@ public class CategoryController {
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("brandList",brandSrv.getAllBrands());
 			return mv;
 		}
 	}
@@ -100,6 +103,7 @@ public class CategoryController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("brandList",brandSrv.getAllBrands());
 			return mv;
 		}
 	}

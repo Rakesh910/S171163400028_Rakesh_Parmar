@@ -35,6 +35,6 @@
 		</p>
 		<p class="col-md-12">
 		<hr class="divider">
-		Copyright &COPY; 2016 <a href="http://www.pingpong-labs.com">Additya</a>
+		Copyright &COPY; 2016 <p>Developed By :- RAKESH PARMAR [171163400028]</p>
 		</p>
 	</footer>

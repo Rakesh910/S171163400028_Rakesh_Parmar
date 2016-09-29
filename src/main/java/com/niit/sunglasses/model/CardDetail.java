@@ -40,7 +40,6 @@ public class CardDetail implements Serializable  {
 	@NotBlank(message="Name Should Not be Blank")
 	private String nameOnCard;
 	
-	@NotBlank(message="Cost Should Not be Blank")
 	private double totalCost;
 	
 	@NotBlank(message="CardType Should Not be Blank")

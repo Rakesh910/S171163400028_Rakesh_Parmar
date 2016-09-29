@@ -152,6 +152,7 @@ public class CheckOutHandler {
 			orderDetails.setCartDetail(cartDetail);
 			orderDetails.setCardDetail(new CardDetail());
 			session.setAttribute("cartSize", orderDetails.getCartDetail().size());
+			session.setAttribute("order",new OrderDetail());
 			return "success"; 	
 		} catch (Exception e) {
 			System.out.println("Error");

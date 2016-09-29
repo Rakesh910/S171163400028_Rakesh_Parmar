@@ -162,75 +162,102 @@ public class IndexController {
 		if(index == 0){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",categorySrv.getById(id));
-			Category category = categorySrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				Category category = categorySrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+				
 			}
 		}else if(index == 1){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",productSizeSrv.getById(id));
-			ProductSize category = productSizeSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				ProductSize category = productSizeSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+			
 			}
 		}else if(index == 2){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",frameColorSrv.getById(id));
-			FrameColor category = frameColorSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				FrameColor category = frameColorSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+				
 			}
 		}else if(index == 3){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",frameMaterialSrv.getById(id));
-			FrameMaterial category = frameMaterialSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				FrameMaterial category = frameMaterialSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+				
 			}
 			
 		}else if(index == 4){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",frameTypeSrv.getById(id));
-			FrameType category = frameTypeSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				FrameType category = frameTypeSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+
 			}
 			
 		}else if(index == 5){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",lensColorSrv.getById(id));
-			LensColor category = lensColorSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				LensColor category = lensColorSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
+
 			}
 			
 		}else if(index == 6){
 			mv.addObject("indexNumber",index);
 			mv.addObject("resultList",lensMaterialSrv.getById(id));
-			LensMaterial category = lensMaterialSrv.getById(id);
-			Set<Product> product = category.getProduct();
-			Iterator<Product> itr = product.iterator();
-			while(itr.hasNext()){
-				Product prd = itr.next();
-				foundProducts ++;
+			try {
+				LensMaterial category = lensMaterialSrv.getById(id);
+				Set<Product> product = category.getProduct();
+				Iterator<Product> itr = product.iterator();
+				while(itr.hasNext()){
+					Product prd = itr.next();
+					foundProducts ++;
+				}
+			} catch (Exception e) {
 			}
 		}
 

@@ -56,6 +56,7 @@ public class BrandController {
 					mv.addObject("brandAttribute",new Brand());
 				}else{
 					mv.addObject("message","Image Uploading Fail..!!");
+					mv.addObject("brandAttribute",new Brand());
 				}
 				return mv;	
 			}else{
@@ -84,6 +85,7 @@ public class BrandController {
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("brandAttribute",brand);
 			return mv;
 		}
 	}

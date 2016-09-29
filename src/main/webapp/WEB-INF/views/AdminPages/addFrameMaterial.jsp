@@ -25,7 +25,7 @@
 	});
 </script>
 <div class="container-fluid">
-AddFrameMaterials
+<h3 class="text-center"><strong>MANAGE FRAMEMATERIAL</strong></h3>
 <hr>
 <div class="alert-danger animated ">${message }</div>
 <hr>
@@ -38,8 +38,9 @@ AddFrameMaterials
 		</div>
 			</c:if>
 		<div class="form-group">
-			<form:input path="frameMaterial_name" class="form-control"
+			<form:input path="frameMaterial_name" class="form-control" title="Enter 3 to 20 Characters"
 				placeholder="New FrameMaterial Name" required="true" autofocus="true" />
+				<form:errors path="frameMaterial_name" class="alert-danger"/>
 		</div>
 	<c:choose>
 		<c:when test="${frameMaterialAttribute.frameMaterial_id != 0 }">
@@ -64,7 +65,7 @@ AddFrameMaterials
 		<input class=" form-control" type="text" size="40"
 			data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 	</div>
-	<table class="table table-striped">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>

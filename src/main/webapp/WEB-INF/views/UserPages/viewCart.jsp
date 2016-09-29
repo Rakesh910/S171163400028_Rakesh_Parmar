@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -39,7 +40,7 @@
 				<c:otherwise>
 					<div class="pull-right col-sm-4 text-center">
 						<h4>Welcome ${username }</h4>
-						<a href="../logout" class="btn btn-info btn-block">Logout</a>
+						<a href="../j_spring_security_logout" class="btn btn-info btn-block">Logout</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -61,13 +62,13 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="../home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
-					<li><a href=""><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
-					<li><a href=""><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
+					<li><a href="../contactUs"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Contact Us</a></li>
+					<li><a href="../aboutUs"><span class="glyphicon glyphicon-globe"></span>&nbsp;About Us</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${userId != null }">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="UserPages/viewMyCart" role="button">My Cart &nbsp;<span
+							<li><a href="viewMyCart" role="button">My Cart &nbsp;<span
 									class="glyphicon glyphicon-shopping-cart"></span> (${cartSize})
 									- Items
 							</a></li>
@@ -102,6 +103,16 @@
 				<div class="panel-body">
 				<c:choose>
 					<c:when test="${cartList > 0 }">
+						<div class="col-xs-2"><strong>PRODUCT IMAGE</strong></div>
+						<div class="col-xs-4"><strong>NAME</strong></div>
+						<div class="col-xs-6">
+							<div class="col-xs-2 text-right"><strong>PRICE</strong></div>
+							<div class="col-xs-2"><strong>QUANTITY</strong></div>
+							<div class="col-xs-3 text-right"><strong>DISCOUNT</strong></div>
+							<div class="col-xs-2 text-right"><strong>TOTAL</strong></div>
+							<div class="col-xs-3"><strong>ACTION</strong></div>
+						</div>
+						
 						<c:forEach items="${order.cartDetail}" var="order">
 					<form method="POST" action="${pageContext.request.contextPath}/UserPages/updateCart">
 						<div class="row">
@@ -111,14 +122,17 @@
 							<h4 class="product-name"><strong>${order.product.product_name}</strong></h4><h4><small>Product description</small></h4>
 						</div>
 						<div class="col-xs-6">
-							<div class="col-xs-3 text-right">
+							<div class="col-xs-2 text-right">
 								<h6><strong>${order.product.product_price} <span class="text-muted">x</span></strong></h6>
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-2">
 								<input  class="form-control" type="hidden" name="product_id" value="${order.product.product_id}"/>
 								<input class="form-control input-sm" name="quantity" value="${order.quantity }" />
 							</div>
 							<div class="col-xs-3 text-right">
+								<h6><strong>${order.product.product_discount}% </strong></h6>
+							</div>
+							<div class="col-xs-2 text-right">
 								<h6><strong>${order.total} </strong></h6>
 							</div>
 							<div class="col-xs-3">

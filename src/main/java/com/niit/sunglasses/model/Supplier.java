@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -27,17 +29,21 @@ public class Supplier implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int supplier_id;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=3,max=50,message="Name Must be a 3 to 50 Characters")
 	private String supplier_name;
 	
 	@NotBlank(message="This Feild Should Not be Blank")
+	@Pattern(regexp="(^$|[0-9]{10})",message="Enter a 10 digit valid phone no")
 	private String supplier_contact;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
-	@Email
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=7,max=50,message="Email Must be a 7 to 50 Characters")
+	@Email(message="Please enter a valid email Id")
 	private String supplier_email;
 	
-	@NotBlank(message="This Feild Should Not be Blank")
+	@NotBlank(message="Name Should Not be Blank")
+	@Length(min=10,max=200,message="Address Must be a 10 to 200 Characters")
 	private String supplier_address;
 	
 	private boolean status;

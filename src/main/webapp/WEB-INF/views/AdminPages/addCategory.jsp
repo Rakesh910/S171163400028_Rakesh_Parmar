@@ -26,11 +26,11 @@
 	});
 </script>
 <div class="container-fluid">
-	<h3 align="center">ADD NEW CATEGORY</h3>
+	<h3 class="text-center"><strong>MANAGE CATEGORY</strong></h3>
 	<hr>
 	<div class="alert-danger animated ">${message }</div>
 	<hr>
-	<div class="col-sm-6 well">
+	<div class="col-sm-6">
 		<form:form method="POST" commandName="categoryAttribute" action="${pageContext.request.contextPath}/AdminPages/saveCategory">
 			<c:if test="${categoryAttribute.cat_id != 0 }">
 				<div class="form-group">
@@ -38,7 +38,9 @@
 				</div>
 			</c:if>
 			<div class="form-group">
-			<form:input path="cat_name" class="form-control" placeholder="New Category Name" required="true" autofocus="true" />
+			<form:input path="cat_name" class="form-control" placeholder="New Category Name" title="Enter 3 to 20 Characters"
+			required="true" autofocus="true" />
+			<form:errors path="cat_name" class="alert-danger"/>
 		</div>
 		<c:choose>
 			<c:when test="${categoryAttribute.cat_id != 0 }">
@@ -59,6 +61,7 @@
 			</c:when>
 			<c:otherwise>
 				<div class="form-group">
+					
 					 <form:select path="brand.brand_id" class="form-control" items="${brandList}" itemValue="brand_id" itemLabel="brand_name" required="true" />
 				</div>
 			</c:otherwise>
@@ -84,10 +87,9 @@
 	<div class="col-sm-6" data-ng-app="app"
 		data-ng-controller="CategoryController">
 		<div class="pull-right">
-			<input class=" form-control" type="text" size="40"
-				data-ng-model="searchTerm" placeholder="Enter Text for Search" />
+			<input class=" form-control" type="text" size="40" data-ng-model="searchTerm" placeholder="Enter Text for Search" />
 		</div>
-		<table class="table table-striped">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>ID</th>

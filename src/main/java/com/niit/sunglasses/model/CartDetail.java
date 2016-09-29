@@ -32,10 +32,9 @@ public class CartDetail implements Serializable {
 	@JsonIgnore // @JsonIgnore ignore this field at the time of JSON file creation. Simply ignore it.
 	private Product product;
 
-	@NotBlank(message="Quantity Should Not be Blank")
 	private int quantity;
 	
-	@NotBlank(message="Total Should Not be Blank")
+	
 	private float total;
 	
 	@ManyToOne(fetch=FetchType.EAGER) 

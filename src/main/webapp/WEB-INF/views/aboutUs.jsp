@@ -54,7 +54,7 @@
 	<div class="container">
      
     
-      <div class='col-xs-9'>
+     <!--  <div class='col-xs-9'>
           <div class="center">        
         <h1 >About Us</h1>
         <p class="lead " ><u>Website Design, Development, SEO and Digital Marketing Company</u></p>        
@@ -69,9 +69,14 @@
             <br>
             <p  >SkyStep INFOS is an IT solutions company, providing innovative products and reliable professional services to business enterprises across the globe. We, at SkyStep INFOS help organizations assess how to maximize the clients? performance and work with them to achieve their vision. We develop and implement technology to improve our clients? productivity and efficiency. Ultimately, we enable our clients to become high-performance businesses and governments.</p>
             
-            </div>
-        <div class='col-xs-3'>
-            <u ><h2 >Services we offer</h2></u><br>
+            </div> -->
+        <div class="col-xs-12">
+        <div class="center"> 
+        	<h1 class="text-center">About Us</h1>
+       		 <hr>
+       		<h2>Services we offer</h2><br>
+        </div>
+            
             <p  ><i class="glyphicon glyphicon-check"></i> Website Development and Designing</p>
             <p  ><i class="glyphicon glyphicon-check"></i> E-Commerce Application Development</p>
             <p  ><i class="glyphicon glyphicon-check"></i> Software Development</p>
@@ -81,7 +86,12 @@
             <p  ><i class="glyphicon glyphicon-check"></i> Social Media and Digital Marketing</p>
             <p  ><i class="glyphicon glyphicon-check"></i> SSL and Payment Gateway</p>
             <p  ><i class="glyphicon glyphicon-check"></i>Cyber Security Services</p>
-            <p  ><i class="glyphicon glyphicon-check"></i> Training</p></div>
+            <p  ><i class="glyphicon glyphicon-check"></i> Training</p>
+            
+            <hr>
+            
+         </div>
+           
 </div>
 	<hr>
 <%@ include file="footer.jsp" %>

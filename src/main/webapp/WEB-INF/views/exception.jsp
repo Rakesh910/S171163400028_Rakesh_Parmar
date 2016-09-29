@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Error Exception page</h1>
+	<center><h1>ACCESS DENIED</h1></center>
 </body>
 </html>

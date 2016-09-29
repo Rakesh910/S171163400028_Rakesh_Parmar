@@ -130,11 +130,38 @@ public class ProductController {
 					setLists(mv);*/
 				}else{
 					mv.addObject("message","Image Uploading Fail..!!");
+					Product product = new Product();
+					
+					ProductSize productSize = new ProductSize();
+					productSize.setSize_id(1);
+					product.setProductSize(productSize);
+					
+					LensColor lensColor = new LensColor();
+					lensColor.setLensColor_id(1);
+					product.setLensColor(lensColor);
+					
+					LensMaterial lensMaterial = new LensMaterial();
+					lensMaterial.setLensMaterial_id(1);
+					product.setLensMaterial(lensMaterial);
+					
+					FrameColor frameColor = new FrameColor();
+					frameColor.setFrameColor_id(1);
+					product.setFrameColor(frameColor);
+					
+					FrameMaterial frameMaterial = new FrameMaterial();
+					frameMaterial.setFrameMaterial_id(1);
+					product.setFrameMaterial(frameMaterial);
+					
+					FrameType frameType = new FrameType();
+					frameType.setFrameType_id(1);
+					product.setFrameType(frameType);
+					mv.addObject("productAttribute",product);
 				}
 				return mv;	
 			}else{
 				productObj.setStatus(true);
 				productSrv.productSaveOrUpdate(productObj);
+				System.out.println("Cat ID:-"+productObj.getCategory().getCat_id());
 				mv.addObject("message","Product Added Successfully..!!");
 				Product product = new Product();
 				
@@ -172,6 +199,7 @@ public class ProductController {
 		catch(HibernateException ex){
 			ex.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("productAttribute",product);
 			return mv;
 		}
 	}
@@ -185,10 +213,12 @@ public class ProductController {
 		try {
 			product = productSrv.getById(id);
 			mv.addObject("productAttribute",product);
+			mv.addObject("categoryList",categorySrv.getCategoryList());
 			return mv;
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+			mv.addObject("productAttribute",product);
 			return mv;
 		}
 	}
@@ -239,6 +269,34 @@ public class ProductController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("message","Exception Occures..!!!");
+Product product = new Product();
+			
+			ProductSize productSize = new ProductSize();
+			productSize.setSize_id(1);
+			product.setProductSize(productSize);
+			
+			LensColor lensColor = new LensColor();
+			lensColor.setLensColor_id(1);
+			product.setLensColor(lensColor);
+			
+			LensMaterial lensMaterial = new LensMaterial();
+			lensMaterial.setLensMaterial_id(1);
+			product.setLensMaterial(lensMaterial);
+			
+			FrameColor frameColor = new FrameColor();
+			frameColor.setFrameColor_id(1);
+			product.setFrameColor(frameColor);
+			
+			FrameMaterial frameMaterial = new FrameMaterial();
+			frameMaterial.setFrameMaterial_id(1);
+			product.setFrameMaterial(frameMaterial);
+			
+			FrameType frameType = new FrameType();
+			frameType.setFrameType_id(1);
+			product.setFrameType(frameType);
+			
+			mv.addObject("productAttribute",product);
+			setLists(mv);
 			return mv;
 		}
 	}
